@@ -36,7 +36,7 @@ const Navigation = ({directions, active}) => {
                                 2xl:text-[24px] 2xl:leading-[36px]
                                 text-secondary-white hover:text-white duration-200"
                                 href={'/directions/' + direction.id}
-                                key={index + direction.title + direction.id}>
+                                key={direction.title + direction.id}>
                                 {direction.title}
                             </Link>))}
                         </div>

@@ -52,7 +52,7 @@ const Footer = ({directions}) => {
                                 md:text-[16px] md:leading-[24px]
                                 text-secondary-white hover:text-white duration-200"
                                     href={'/directions/' + direction.id}
-                                    key={index + direction.title + direction.id}>
+                                    key={direction.title + direction.id}>
                                     {direction.title}
                                 </Link>))}
                             </div>
