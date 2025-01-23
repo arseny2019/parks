@@ -1,21 +1,35 @@
+@import "../styles/main-page.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+    --main-black: #0A0A0A;
+    --secondary-black: rgba(10, 10, 10, 0.8);
+}
+
+* {
+    @apply font-roboto;
+}
+
+h1, h2, h3, h4, h5, h6, h1 *, h2 * {
+    @apply font-roboto-condensed tracking-[0.005em] font-bold;
+}
+
+h1 {
+    @apply font-bold text-[36px] leading-[43px] 2xl:text-[80px] 2xl:leading-[96px] xl:text-[70px] xl:leading-[84px] lg:text-[60px] lg:leading-[72px] md:text-[50px] md:leading-[60px]
+}
+
+.c-container {
+    @apply mx-auto 2xl:max-w-[1440px] lg:px-10 md:px-8 px-6;
+}
+
+body.menu-open {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width); /* Add padding when modal is open */
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    --scrollbar-width: 0; /* Initialize the value*/
 }
