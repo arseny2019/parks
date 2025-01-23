@@ -32,6 +32,8 @@ export default async function Home() {
     const news = await getNews();
     console.log('mainPageData', data);
     console.log('directions', directions);
+    console.log('news', news);
+    console.log('projects', projects);
     return (
         <RootLayout>
             <Header directions={directions} withAnimation={true}></Header>

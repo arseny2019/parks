@@ -4,8 +4,6 @@ FROM node:18-alpine
 
 WORKDIR /
 
-echo "before RUN"
-
 # Install dependencies based on the preferred package manager
 COPY /parks/next/package.json /pakrs/next/package-lock.json* ./
 RUN \
@@ -15,7 +13,6 @@ RUN \
   # Allow install without lockfile, so example works even without Node.js installed locally
   else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install; \
   fi
-echo "after RUN"
 
 COPY app ./app
 COPY components ./components
