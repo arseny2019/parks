@@ -70,7 +70,7 @@ const MainTopBlock = ({topBlockImage, topBlockText}) => {
         md:pl-[32px] md:pr-[32px] md:pb-[80px]
         pl-[24px] pr-[24px] pb-[48px]
         ">
-            <div className="xl:max-w-[1360px] text-white 2xl:pr-10 xl:pr-2" dangerouslySetInnerHTML={{__html: topBlockText}}></div>
+            <div className="xl:max-w-[1360px] mx-auto text-white 2xl:pr-10 xl:pr-2" dangerouslySetInnerHTML={{__html: topBlockText}}></div>
         </div>
     </div>)
 }
