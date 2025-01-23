@@ -134,7 +134,7 @@ const Header = ({withAnimation, directions}) => {
                         <div
                             className={!activeHeader || activeMenu ? 'text-white flex items-end' : 'text-main-black flex items-end'}>
                             <Image width={40} height={40} src={'logo-left.svg'}
-                                   className="h-[40px] w-[40px] md:h-[42px] md:w-[42px]" alt=""></Image>
+                                   className="h-[40px] w-[40px] md:h-[42px] md:w-[42px]" alt="Logo"></Image>
                             <div className="ml-[15px]">
                                 <svg className={!activeHeader || activeMenu ?
                                     "duration-500 h-[31px] w-[80px] md:h-[32.5px] md:w-[84px]" :

@@ -16,8 +16,8 @@ const MainProjectsBlock = ({projects}) => {
             ">
                 {projects && projects.map((project, index) => <Link href={'/projects/' + project.id}
                     className="block min-h-[360px] relative rounded-3xl overflow-hidden"
-                    key={project.name + index}>
-                    <Image width={1360} height={720} className="h-full w-full absolute left-0 top-0" src={getImageURL(project.image)} alt={project.name}></Image>
+                    key={project.title + index}>
+                    <Image width={1360} height={720} className="h-full w-full absolute left-0 top-0" src={getImageURL(project.image)} alt={project.title}></Image>
                     <div className="projects-gradient h-full w-full absolute top-0 left-0"></div>
                     <div className="absolute left-0 top-0 w-full h-full
                     py-8 px-6
@@ -26,13 +26,13 @@ const MainProjectsBlock = ({projects}) => {
                         <h4 className="text-white
                         text-[36px] leading-[43px]
                         xl:text-[40px] xl:leading-[48px]
-                        ">{project.name}</h4>
+                        ">{project.title}</h4>
                         <div className="text-white
                         text-[18px] leading-[22px]
                         mt-6
                         md:max-w-[640px]
                         xl:text-[20px] xl:leading-[24px]
-                        " dangerouslySetInnerHTML={{__html: project.content}}></div>
+                        " dangerouslySetInnerHTML={{__html: project.description}}></div>
                     </div>
                 </Link>)}
             </div>
