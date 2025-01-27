@@ -24,7 +24,8 @@ const MainDirectionsBlock = ({directionsBlockText, directions}) => {
                             h-[200px] rounded-3xl p-6
                             xl:p-10 xl:h-[300px]
                         ">
-                            <p className="font-inter font-[500] text-[20px]
+                            <p className="font-inter font-[500] text-[20px] leading-[26px]
+                            xl:text-[24px] xl:leading-[31px]
                             ">{direction.title}</p>
                             <Image
                                 className="w-[90px] h-[90px] absolute right-2.5 bottom-2.5 xl:w-[130px] xl:h-[130px] xl:right-5 xl:bottom-5"

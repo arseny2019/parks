@@ -64,11 +64,9 @@ const MainTopBlock = ({topBlockImage, topBlockText}) => {
         <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient"></div>
         <Image alt="Красивая картинка" width={1360} height={0} className="absolute top-0 left-0 w-full h-full object-cover" src={imageUrl}/>
         <div className="uppercase absolute top-0 left-0 z-[2] w-full h-full flex flex-col-reverse
-        2xl:pl-[160px] 2xl:pr-[200px] 2xl:pb-[120px]
-        xl:pl-[40px] xl:pr-[68px] xl:pb-[100px]
-        lg:pl-[40px] lg:pr-[40px]
-        md:pl-[32px] md:pr-[32px] md:pb-[80px]
-        pl-[24px] pr-[24px] pb-[48px]
+        2xl:pb-[120px] 2xl:max-w-[1680px] 2xl:left-[calc(50vw_-_840px)]
+        xl:pb-[100px]
+        lg:px-10 md:px-8 px-6 md:pb-[80px] pb-[48px]
         ">
             <div className="xl:max-w-[1360px] mx-auto text-white 2xl:pr-10 xl:pr-2" dangerouslySetInnerHTML={{__html: topBlockText}}></div>
         </div>

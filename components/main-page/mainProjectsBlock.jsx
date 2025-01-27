@@ -15,7 +15,13 @@ const MainProjectsBlock = ({projects}) => {
             lg:gap-y-8
             ">
                 {projects && projects.map((project, index) => <Link href={'/projects/' + project.id}
-                    className="block min-h-[360px] relative rounded-3xl overflow-hidden"
+                    className="block relative rounded-3xl overflow-hidden project-card
+                    h-[360px]
+                    md:h-[280px]
+                    lg:h-[320px]
+                    xl:h-[360px]
+                    2xl:h-[400px]
+                    "
                     key={project.title + index}>
                     <Image width={1360} height={720} className="h-full w-full absolute left-0 top-0" src={getImageURL(project.image)} alt={project.title}></Image>
                     <div className="projects-gradient h-full w-full absolute top-0 left-0"></div>
@@ -23,11 +29,11 @@ const MainProjectsBlock = ({projects}) => {
                     py-8 px-6
                     xl:py-12 xl:px-10
                     ">
-                        <h4 className="text-white
+                        <h4 className="text-white uppercase
                         text-[36px] leading-[43px]
                         xl:text-[40px] xl:leading-[48px]
                         ">{project.title}</h4>
-                        <div className="text-white
+                        <div className="text-secondary-white font-[400]
                         text-[18px] leading-[22px]
                         mt-6
                         md:max-w-[640px]

@@ -9,20 +9,22 @@ const Header = ({withAnimation, directions}) => {
     const headerRef = useRef(null);
     const blackCircleRef = useRef(null);
     const headerInnerRef = useRef(null);
+    const [headerHeight, setHeaderHeight] = useState(0);
     const [heightOnAnimate, setHeightOnAnimate] = useState(0);
     const [heightOnHide, setHeightOnHide] = useState(0);
     const [activeHeader, setActiveHeader] = useState(false);
     const [activeMenu, setActiveMenu] = useState(false);
 
     useEffect(() => {
-        const headerHeight = headerRef.current.getBoundingClientRect().height;
+        setHeaderHeight(headerRef.current.getBoundingClientRect().height);
+
         if (containerRef.current && headerRef.current) {
             setHeightOnAnimate(containerRef.current.getBoundingClientRect().height - headerHeight);
         }
 
         document.addEventListener('scroll', () => {
             if (heightOnAnimate) {
-                if (window.scrollY > heightOnAnimate) {
+                if (window.scrollY > heightOnAnimate - 70) {
                     if (!activeHeader) {
                         setActiveHeader(true);
                     }
@@ -44,7 +46,7 @@ const Header = ({withAnimation, directions}) => {
 
     useEffect(() => {
         if (heightOnAnimate) {
-            if (window.scrollY > heightOnAnimate) {
+            if (window.scrollY > heightOnAnimate - 70) {
                 if (!activeHeader) {
                     setActiveHeader(true);
                 }
@@ -63,13 +65,13 @@ const Header = ({withAnimation, directions}) => {
     useEffect(() => {
         if (headerInnerRef && headerInnerRef.current) {
             if (activeHeader) {
-                headerInnerRef.current.parentNode.classList.add('backdrop-blur-[50px]');
+                headerInnerRef.current.parentNode.classList.add('backdrop-blur-[50px]', 'bg-[rgba(255,_255,_255,_0.6)]');
             } else {
-                headerInnerRef.current.parentNode.classList.remove('backdrop-blur-[50px]');
+                headerInnerRef.current.parentNode.classList.remove('backdrop-blur-[50px]', 'bg-[rgba(255,_255,_255,_0.6)]');
             }
 
             if (activeMenu) {
-                headerInnerRef.current.parentNode.classList.remove('backdrop-blur-[50px]');
+                headerInnerRef.current.parentNode.classList.remove('backdrop-blur-[50px]', 'bg-[rgba(255,_255,_255,_0.6)]');
             }
         }
 
@@ -138,7 +140,7 @@ const Header = ({withAnimation, directions}) => {
                             <div className="ml-[15px]">
                                 <svg className={!activeHeader || activeMenu ?
                                     "duration-500 h-[31px] w-[80px] md:h-[32.5px] md:w-[84px]" :
-                                    "duration-500 delay-[350ms] h-[31px] w-[80px] md:h-[32.5px] md:w-[84px]"
+                                    "duration-500 h-[31px] w-[80px] md:h-[32.5px] md:w-[84px]"
                                 } width="81"
                                      height="32" viewBox="0 0 81 32" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">

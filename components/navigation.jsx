@@ -15,10 +15,11 @@ const Navigation = ({directions, active}) => {
 
     return (
         <div className={menuClass}>
-            <div className="grid gap-y-[100px] max-w-[1440px] mx-auto px-6 pb-[120px]
-            md:px-8 md:gap-y-[120px]
+            <div className="grid gap-y-[100px] max-w-[1680px] mx-auto px-6 pb-[120px]
+            md:gap-y-[120px]
             lg:px-10
             xl:pb-[48px] xl:grid-cols-3 xl:gap-x-[80px]
+            2xl:px-[120px]
             ">
                 <div className="grid gap-y-[100px]
                 md:grid-cols-2 md:gap-x-[80px]

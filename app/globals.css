@@ -22,7 +22,7 @@ h1 {
 }
 
 .c-container {
-    @apply mx-auto 2xl:max-w-[1440px] lg:px-10 md:px-8 px-6;
+    @apply mx-auto xl:max-w-[1440px] lg:px-10 md:px-8 px-6;
 }
 
 body.menu-open {

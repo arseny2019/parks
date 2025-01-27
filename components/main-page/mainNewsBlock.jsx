@@ -9,10 +9,10 @@ const MainNewsBlock = ({news}) => {
         <>
             <div className="mt-[100px] md:mt-[120px] xl:mt-[150px] text-main-black">
                 <h3 className="c-container uppercase
-            text-[28px] leading-[42px]
-            md:text-[36px] md:leading-[54px]
-            ">Новости</h3>
-                <div className="mt-6 overflow-auto w-full lg:px-10 md:px-8 px-6">
+                    text-[28px] leading-[42px]
+                    md:text-[36px] md:leading-[54px]
+                    ">Новости</h3>
+                <div className="mt-6 overflow-auto w-full lg:px-10 md:px-8 px-6 lg:mx-auto lg:max-w-[1440px]">
                     <div className="flex gap-x-4
                 md:gap-x-6
                 lg:gap-x-8

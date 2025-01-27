@@ -4,11 +4,13 @@ import Link from "next/link";
 const MainMapBlock = ({}) => {
 
     return (
-        <div className="radial-gradient">
+        <div className="radial-gradient border-b-[1px] border-[rgba(255,_255,_255,_0.06)]">
             <div className="c-container map-background text-white
-                py-[110px]
-                sm:py-[140px]
-                md:py-[120px]
+                h-[640px] py-[110px]
+                sm:py-[140px] sm:h-[700px]
+                md:py-[120px] md:h-[580px]
+                lg:h-[660px]
+                xl:h-[860px]
                 ">
                 <div className="flex flex-col items-center">
                     <div className="flex flex-col items-center max-w-[700px]">
