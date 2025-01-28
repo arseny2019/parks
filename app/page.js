@@ -37,13 +37,13 @@ export default async function Home() {
     return (
         <RootLayout>
             <Header directions={directions} withAnimation={true}></Header>
-            <div className="fixed z-[-1] left-0 top-0 xl:min-h-[900px] h-[100vh] w-screen">
+            <div className="md:fixed md:z-[-1] md:left-0 md:top-0 xl:min-h-[900px] h-[100vh] w-full">
                 <MainTopBlock
                     topBlockImage={data.topBlockImage}
                     topBlockText={data.topBlockText}
                 ></MainTopBlock>
             </div>
-            <div className="xl:min-h-[900px] h-[100vh]"></div>
+            <div className="xl:min-h-[900px] md:h-[100vh]"></div>
             <div className="bg-white pb-[100px] md:pb-[120px] xl:pb-[200px]">
                 <MainDirectionsBlock
                     directionsBlockText={data.directionsBlockText}

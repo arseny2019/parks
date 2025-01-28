@@ -9,7 +9,7 @@ const MainNewsBlock = ({news}) => {
         <>
             <div className="mt-[100px] md:mt-[120px] xl:mt-[150px] text-main-black">
                 <h3 className="c-container uppercase
-                    text-[28px] leading-[42px]
+                    text-[32px] leading-[42px]
                     md:text-[36px] md:leading-[54px]
                     ">Новости</h3>
                 <div className="mt-6 overflow-auto w-full lg:px-10 md:px-8 px-6 lg:mx-auto lg:max-w-[1440px]">
@@ -19,13 +19,13 @@ const MainNewsBlock = ({news}) => {
                 lg:grid lg:grid-cols-3
                 ">
                         {news && news.map(item => (
-                            <Link href={'/news/' + item.id} key={item.title + item.id} className="inline-block
+                            <Link href={'/news/' + item.id} key={item.title + item.id} className="inline-block news-item
                     min-w-[290px]
                     sm:min-w-[320px]
                     md:min-w-[315px]
                     lg:min-w-[auto]
                 ">
-                                <Image width={480} height={0} className="object-fit w-full aspect-[1.65] rounded-3xl"
+                                <Image width={480} height={0} className="duration-300 news-item-image object-fit w-full aspect-[1.65] rounded-3xl"
                                        src={getImageURL(item.thumbnail)} alt={item.title}></Image>
                                 <p className="font-inter text-secondary-black mt-4
                     text-[16px] leading-6
@@ -43,8 +43,9 @@ const MainNewsBlock = ({news}) => {
             </div>
             <div className="c-container">
                 <Link className="c-container block text-center w-full font-[500] bg-[rgba(10,_10,_10,_0.08)] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-[rgba(10,_10,_10,_0.8)]
-                    mt-6 py-6 text-[18px] leading-6 rounded-[36px]
-                    lg:mt-8
+                       mt-6 py-5 text-[16px] leading-6 rounded-[32px]
+                       xl:py-6 xl:text-[18px] xl:rounded-[36px]
+                       lg:mt-8
                     " href="/news">
                     Посмотреть все новости
                 </Link>

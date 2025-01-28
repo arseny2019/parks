@@ -1,5 +1,5 @@
 .directions-block-title * {
-    @apply font-roboto-condensed text-[28px] leading-[36px] md:text-[36px] md:leading-[47px] lg:text-[42px] lg:leading-[54px] xl:text-[56px] xl:leading-[73px] 2xl:text-[64px] 2xl:leading-[83px]
+    @apply font-roboto-condensed text-[32px] leading-[36px] md:text-[36px] md:leading-[47px] lg:text-[42px] lg:leading-[54px] xl:text-[56px] xl:leading-[73px] 2xl:text-[64px] 2xl:leading-[83px]
 }
 
 .dark-gradient {
@@ -89,4 +89,8 @@
 
 .burger-active .burger-line::after {
     transform: rotate(-45deg);
+}
+
+.news-item:hover .news-item-image {
+    opacity: 0.8;
 }

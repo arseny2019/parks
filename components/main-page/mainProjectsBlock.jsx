@@ -7,7 +7,7 @@ const MainProjectsBlock = ({projects}) => {
     return (
         <div className="c-container mt-[100px] md:mt-[120px] xl:mt-[150px] text-main-black">
             <h3 className="uppercase
-            text-[28px] leading-[42px]
+            text-[32px] leading-[42px]
             md:text-[36px] md:leading-[54px]
             ">Проекты</h3>
             <div className="mt-6 grid grid-cols-1 gap-y-4
@@ -23,7 +23,7 @@ const MainProjectsBlock = ({projects}) => {
                     2xl:h-[400px]
                     "
                     key={project.title + index}>
-                    <Image width={1360} height={720} className="h-full w-full absolute left-0 top-0" src={getImageURL(project.image)} alt={project.title}></Image>
+                    <Image width={1360} height={720} className="object-cover h-full w-full absolute left-0 top-0" src={getImageURL(project.image)} alt={project.title}></Image>
                     <div className="projects-gradient h-full w-full absolute top-0 left-0"></div>
                     <div className="absolute left-0 top-0 w-full h-full
                     py-8 px-6
@@ -43,7 +43,8 @@ const MainProjectsBlock = ({projects}) => {
                 </Link>)}
             </div>
             <Link className="block text-center w-full font-[500] bg-[rgba(10,_10,_10,_0.08)] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-[rgba(10,_10,_10,_0.8)]
-            mt-6 py-6 text-[18px] leading-6 rounded-[36px]
+            mt-6 py-5 text-[16px] leading-6 rounded-[32px]
+            xl:py-6 xl:text-[18px] xl:rounded-[36px]
             lg:mt-8
             " href="/projects">
                 Посмотреть все проекты

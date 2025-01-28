@@ -6,7 +6,7 @@ const MainDirectionsBlock = ({directionsBlockText, directions}) => {
 
     return (
         <div className="c-container">
-            <div className="uppercase directions-block-title text-main-black text-[28px] leading-[36px] pt-[100px] font-roboto-condensed
+            <div className="uppercase directions-block-title text-main-black text-[32px] leading-[36px] pt-[100px] font-roboto-condensed
                 md:pt-[120px]
                 xl:pt-[200px]
             "

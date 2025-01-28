@@ -7,19 +7,19 @@ export default {
     ],
     theme: {
         screens: {
-            'sm': '600px',
+            'sm': '375px',
             // => @media (min-width: 600px) { ... }
 
-            'md': '768px',
+            'md': '601px',
             // => @media (min-width: 768px) { ... }
 
-            'lg': '1024px',
+            'lg': '769px',
             // => @media (min-width: 1024px) { ... }
 
-            'xl': '1200px',
+            'xl': '1025px',
             // => @media (min-width: 1200px) { ... }
 
-            '2xl': '1680px',
+            '2xl': '1201px',
             // => @media (min-width: 1680px) { ... }
         },
         extend: {
