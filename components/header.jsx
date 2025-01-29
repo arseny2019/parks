@@ -181,7 +181,7 @@ const Header = ({withAnimation, directions}) => {
                         <div className={!activeHeader || activeMenu ? 'text-white' : 'text-main-black'}>
                             <div onClick={() => setBurgerActive(!burgerActive)}
                                  className="cursor-pointer relative burger-container flex justify-center items-center w-10 h-10">
-                    <span className={burgerActive ? 'burger burger-active' : 'burger'}>
+                    <span className="burger">
                         <span className="burger-line"></span>
                     </span>
                             </div>

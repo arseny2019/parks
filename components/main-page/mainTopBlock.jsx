@@ -3,11 +3,23 @@ import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
 import {useEffect, useRef, useState} from "react";
 
-const MainTopBlock = ({topBlockImage, topBlockText}) => {
+const MainTopBlock = ({topBlockImage, topBlockText, topBlockVideo}) => {
     const imageUrl = getImageURL(topBlockImage);
     const blockRef = useRef(null);
+    const videoRef = useRef(null);
     const [heightOnHide, setHeightOnHide] = useState(0);
     const [hideBlock, setHideBlock] = useState(false);
+    const [video, setVideo] = useState(null);
+
+    useEffect(() => {
+        if (topBlockVideo) {
+            setVideo(getImageURL(topBlockVideo));
+            console.log('this video', video);
+        }
+    }, []);
+
+
+
     useEffect(() => {
         if (blockRef && blockRef.current) {
             setHeightOnHide(blockRef.current.getBoundingClientRect().height);
@@ -60,9 +72,12 @@ const MainTopBlock = ({topBlockImage, topBlockText}) => {
         relative
         xl:min-h-[900px]
         h-[100vh]
+        md:h-[90vh]
+        xl:h-[100vh]
     ">
         <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient"></div>
-        <Image alt="Красивая картинка" width={1360} height={0} className="absolute top-0 left-0 w-full h-full object-cover" src={imageUrl}/>
+        {imageUrl && !video && <Image alt="Красивая картинка" width={1360} height={0} className="absolute top-0 left-0 w-full h-full object-cover" src={imageUrl}/>}
+        {video && <video loop={true} ref={videoRef} muted={true} width={1360} height={0} className="absolute top-0 left-0 w-full h-full object-cover" src={video} autoPlay={true}/>}
         <div className="uppercase absolute top-0 left-0 z-[2] w-full h-full flex flex-col-reverse
         2xl:pb-[120px] 2xl:max-w-[1680px] 2xl:left-[max(0px,_calc(50%_-_840px))]
         xl:pb-[100px]

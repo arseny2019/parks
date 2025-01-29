@@ -33,8 +33,7 @@ const MainNewsBlock = ({news}) => {
 
                     ">{item.title}</p>
                                 <p className="font-inter font-[500] text-placeholder-black mt-2
-                    text-[11px] leading-[16px]
-                    lg:text-[13px] lg:leading-[19px] lg:mt-3
+                        text-[13px] leading-[19px] lg:mt-3
                     ">{formatDate(item.date)}</p>
                             </Link>))}
                         <div className="lg:hidden opacity-0">1</div>

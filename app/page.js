@@ -8,6 +8,7 @@ import MainProjectsBlock from "@/components/main-page/mainProjectsBlock";
 import MainNewsBlock from "@/components/main-page/mainNewsBlock";
 import Footer from "@/components/footer";
 import MainMapBlock from "@/components/main-page/mainMapBlock";
+import {getImageURL} from "@/helpers/directus";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -41,6 +42,7 @@ export default async function Home() {
                 <MainTopBlock
                     topBlockImage={data.topBlockImage}
                     topBlockText={data.topBlockText}
+                    topBlockVideo={data.topBlockVideo}
                 ></MainTopBlock>
             </div>
             <div className="xl:min-h-[900px] md:h-[100vh]"></div>

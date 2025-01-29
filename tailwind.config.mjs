@@ -13,7 +13,7 @@ export default {
             'md': '601px',
             // => @media (min-width: 768px) { ... }
 
-            'lg': '769px',
+            'lg': '835px',
             // => @media (min-width: 1024px) { ... }
 
             'xl': '1025px',
