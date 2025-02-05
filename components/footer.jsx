@@ -6,7 +6,9 @@ const Footer = ({directions}) => {
     return (
         <footer className="bg-main-black text-white pt-[100px] xl:pt-[120px]">
             <div className="c-container">
-                <Image className="xl:hidden w-[135px] h-[40px] md:w-[142px] md:h-[42px]" width={135} height={40} src="logo.svg" alt="Парки России"></Image>
+                <Link className="inline-block xl:hidden" href="/">
+                    <Image className="w-[135px] h-[40px] md:w-[142px] md:h-[42px]" width={135} height={40} src="/logo.svg" alt="Парки России"></Image>
+                </Link>
                 <div className="lg:hidden mt-[100px] flex flex-col">
                     <Link className="duration-200 hover:text-secondary-white text-[22px] leading-[33px] font-bold"
                           href="tel: 88003332026">8 (800) 333 20
@@ -40,8 +42,10 @@ const Footer = ({directions}) => {
                 xl:block xl:mt-0
                 ">
                     <div className="grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-8 xl:grid-cols-4">
-                        <Image className="hidden xl:inline-block w-[135px] h-[40px] md:w-[142px] md:h-[42px]"
-                               width={135} height={40} src="logo.svg" alt="Парки России"></Image>
+                        <Link className="hidden xl:inline-block" href="/">
+                            <Image className="w-[135px] h-[40px] md:w-[142px] md:h-[42px]"
+                                              width={135} height={40} src="/logo.svg" alt="Парки России"></Image>
+                        </Link>
                         <div className="pr-5">
                             <p className="pr-5 font-[500] text-[12px] leading-[18px] md:text-[13px] md:leading-[19px]
                             text-placeholder-white uppercase">Направления</p>
@@ -151,7 +155,7 @@ const Footer = ({directions}) => {
                         © АНО «Центр развития общественных пространств и парков»
                     </p>
                     <div className="mt-12 md:mt-0 flex flex-col">
-                        <Image width={92} height={13.5} className="w-[92px] h-[13.5px]" src="notbadlab.svg"
+                        <Image width={92} height={13.5} className="w-[92px] h-[13.5px]" src="/notbadlab.svg"
                                alt="NotBadLab"></Image>
                         <p className="text-[10px] leading-[15px] font-[600] text-placeholder-white uppercase mt-[3px]">Разработка</p>
                     </div>

@@ -19,7 +19,7 @@ const MainNewsBlock = ({news}) => {
                 lg:grid lg:grid-cols-3
                 ">
                         {news && news.map(item => (
-                            <Link href={'/news/' + item.id} key={item.title + item.id} className="inline-block news-item
+                            <Link href={'/news/' + item.slug} key={item.title + item.id} className="inline-block news-item
                     min-w-[290px]
                     sm:min-w-[320px]
                     md:min-w-[315px]

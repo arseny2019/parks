@@ -8,7 +8,6 @@ import MainProjectsBlock from "@/components/main-page/mainProjectsBlock";
 import MainNewsBlock from "@/components/main-page/mainNewsBlock";
 import Footer from "@/components/footer";
 import MainMapBlock from "@/components/main-page/mainMapBlock";
-import {getImageURL} from "@/helpers/directus";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -31,12 +30,9 @@ export default async function Home() {
     const directions = await getDirections();
     const data = await getMainPageData();
     const news = await getNews();
-    console.log('mainPageData', data);
-    console.log('directions', directions);
     console.log('news', news);
-    console.log('projects', projects);
     return (
-        <RootLayout>
+        <>
             <Header directions={directions} withAnimation={true}></Header>
             <div className="md:fixed md:z-[-1] md:left-0 md:top-0 xl:min-h-[900px] h-[100vh] w-full">
                 <MainTopBlock
@@ -58,6 +54,6 @@ export default async function Home() {
                 <MainMapBlock></MainMapBlock>
                 <Footer directions={directions}></Footer>
             </div>
-        </RootLayout>
+        </>
     );
 }

@@ -4,79 +4,36 @@ import {useEffect, useRef, useState} from "react";
 import Navigation from "@/components/navigation";
 import Link from "next/link";
 
-const Header = ({withAnimation, directions}) => {
+const BlackHeader = ({directions}) => {
     const [burgerActive, setBurgerActive] = useState(false);
     const containerRef = useRef(null);
     const headerRef = useRef(null);
     const blackCircleRef = useRef(null);
     const headerInnerRef = useRef(null);
     const [headerHeight, setHeaderHeight] = useState(0);
-    const [heightOnAnimate, setHeightOnAnimate] = useState(0);
     const [heightOnHide, setHeightOnHide] = useState(0);
-    const [activeHeader, setActiveHeader] = useState(false);
     const [activeMenu, setActiveMenu] = useState(false);
 
     useEffect(() => {
         setHeaderHeight(headerRef.current.getBoundingClientRect().height);
 
-        if (containerRef.current && headerRef.current) {
-            setHeightOnAnimate(containerRef.current.getBoundingClientRect().height - headerHeight);
-        }
-
         function handleScroll() {
-            if (heightOnAnimate) {
-                if (window.scrollY > heightOnAnimate - 70) {
-                    if (!activeHeader) {
-                        setActiveHeader(true);
-                    }
-                } else {
-                    setActiveHeader(false);
-                }
-            }
-
             if (heightOnHide) {
-                if (window.scrollY > heightOnHide - headerHeight) {
+                if (window.scrollY > heightOnHide - 90) {
                     headerRef.current?.classList.add('opacity-0', 'invisible');
                 } else {
                     headerRef.current?.classList.remove('opacity-0', 'invisible');
                 }
             }
         }
-
-        console.log('try to add scroll listener')
         document.addEventListener('scroll', handleScroll);
 
         return () => {
-            console.log('try to delete listener from header');
+            console.log('try to remove scroll listener from blackHeader');
             document.removeEventListener('scroll', handleScroll);
-        };
-
-    }, [containerRef, withAnimation, heightOnAnimate, activeHeader]);
-
-    useEffect(() => {
-        if (heightOnAnimate) {
-            if (window.scrollY > heightOnAnimate - 70) {
-                if (!activeHeader) {
-                    setActiveHeader(true);
-                }
-            } else {
-                if (activeHeader) {
-                    setActiveHeader(false);
-                }
-            }
-        }
-    });
-
-    useEffect(() => {
-        if (headerRef && headerRef.current) {
-            if (activeHeader) {
-                headerRef.current.classList.add('backdrop-blur-[50px]', 'bg-[rgba(255,_255,_255,_0.6)]');
-            } else {
-                headerRef.current.classList.remove('backdrop-blur-[50px]', 'bg-[rgba(255,_255,_255,_0.6)]');
-            }
         }
 
-    }, [activeHeader, headerRef, activeMenu]);
+    }, [containerRef, heightOnHide]);
 
     useEffect(() => {
         if (burgerActive && blackCircleRef) {
@@ -120,9 +77,8 @@ const Header = ({withAnimation, directions}) => {
 
     return (
         <>
-            {withAnimation && <div ref={containerRef}
-                                   className="absolute left-0 top-0 -z-[1] xl:min-h-[900px] h-[100vh] w-full"></div>}
-            <header ref={headerRef} className="duration-300 w-full fixed top-0 left-0 z-10 h-[88px] xl:h-[90px]">
+            <header ref={headerRef}
+                    className="duration-300 w-full h-[88px] xl:h-[90px] fixed top-0 left-0 z-10 backdrop-blur-[50px] bg-[rgba(255,_255,_255,_0.6)]">
                 <div ref={blackCircleRef} className="absolute right-0 top-0 scale-0 z-10 origin-center
                 translate-x-[50%] translate-y-[-50%] duration-500 bg-main-black w-[max(400vh,_400vw)] h-[max(400vh,_400vw)] rounded-[50%]"></div>
                 <Navigation closeCallback={() => setBurgerActive(false)} active={activeMenu}
@@ -136,7 +92,7 @@ const Header = ({withAnimation, directions}) => {
                     ">
                         <Link href="/">
                             <div
-                                className={!activeHeader || activeMenu ? 'text-white flex items-end' : 'text-main-black flex items-end'}>
+                                className="text-main-black flex items-end">
                                 <Image width={40} height={40} src="/logo-left.svg"
                                        className="h-[40px] w-[40px] md:h-[42px] md:w-[42px]" alt="Logo"></Image>
                                 <div className="ml-[15px]">
@@ -182,12 +138,12 @@ const Header = ({withAnimation, directions}) => {
                             </div>
                         </Link>
 
-                        <div className={!activeHeader || activeMenu ? 'text-white' : 'text-main-black'}>
+                        <div className="text-main-black">
                             <div onClick={() => setBurgerActive(!burgerActive)}
                                  className="cursor-pointer relative burger-container flex justify-center items-center w-10 h-10">
-                                <span className="burger">
-                                    <span className="burger-line"></span>
-                                </span>
+                    <span className="burger">
+                        <span className="burger-line"></span>
+                    </span>
                             </div>
                         </div>
                     </div>
@@ -197,4 +153,4 @@ const Header = ({withAnimation, directions}) => {
     )
 }
 
-export default Header;
+export default BlackHeader;

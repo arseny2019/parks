@@ -18,7 +18,7 @@ const MainMapBlock = ({}) => {
                         lg:h-[420px]
                         xl:h-[460px]
                     ">
-                    <Image className="lg:w-[320px] lg:h-[65px]" width={246} height={50} src="logo-blue.svg"
+                    <Image className="lg:w-[320px] lg:h-[65px]" width={246} height={50} src="/logo-blue.svg"
                            alt="Общероссийская общественная организация Парки России"></Image>
                     <div className="flex flex-col items-center">
                         <p className="text-[16px] leading-6 font-inter text-center

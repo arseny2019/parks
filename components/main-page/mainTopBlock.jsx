@@ -14,7 +14,6 @@ const MainTopBlock = ({topBlockImage, topBlockText, topBlockVideo}) => {
     useEffect(() => {
         if (topBlockVideo) {
             setVideo(getImageURL(topBlockVideo));
-            console.log('this video', video);
         }
     }, []);
 

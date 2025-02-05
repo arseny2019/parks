@@ -15,7 +15,8 @@ const nextConfig = {
             aggregateTimeout: 300,   // delay before rebuilding
         };
         return config;
-    }
+    },
+    trailingSlash: true,
 };
 
 export default nextConfig;

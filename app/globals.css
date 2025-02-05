@@ -1,4 +1,6 @@
 @import "../styles/main-page.css";
+@import "../styles/direction-detail.css";
+@import "../styles/news.css";
 
 @tailwind base;
 @tailwind components;
