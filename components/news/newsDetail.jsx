@@ -6,12 +6,11 @@ const NewsDetail = ({detail, previousNews}) => {
     console.log('previousNews', previousNews);
     return (
         <>
-            <div className="c-container max-w-[650px] pt-[176px] pb-[80px] md:pt-[200px] md:pb-[120px] xl:pb-[150px]">
+            <div className="mx-auto max-w-[650px] pt-[176px] pb-[80px] md:pt-[200px] md:pb-[120px] xl:pb-[150px] 2xl:pb-[200px]">
                 <h2 className="font-roboto-condensed font-[600]
                     text-[26px] leading-[29px]
                     md:text-[36px] md:leading-[40px]
                     xl:text-[40px] xl:leading-[44px]
-                    2xl:pb-[200px]
                 ">{detail.title}</h2>
                 <p className="font-inter font-[500] text-placeholder-black mt-2
                         text-[13px] leading-[19px] lg:mt-3
