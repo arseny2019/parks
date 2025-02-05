@@ -15,22 +15,13 @@ async function getNewsDetail(slug) {
         fields: ['*']
     }));
 }
-async function checkPreviousNews(date) {
-    return directus.request(aggregate('news', {
-        aggregate: {
-            count: '*',
-        },
-        filter: {
-            date: { "_lt": date }
-        },
-    }));
-}
 
 async function getNextNews(date) {
     return directus.request(readItems('news', {
         filter: {
             date: { "_lt": date }
         },
+        sort: ['-date'],
         limit: 1,
         fields: ['*']
     }));

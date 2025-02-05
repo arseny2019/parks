@@ -8,6 +8,7 @@ async function getNews(page, limit) {
     return directus.request(readItems('news', {
         limit,
         offset: page * limit,
+        sort: ['-date'],
         meta: 'total_count',
     }));
 }
@@ -25,7 +26,7 @@ async function getDirections() {
 
 export default async function NewsArchivePage() {
     const directions = await getDirections();
-    const limit = 1;
+    const limit = 9;
     const page = 0;
     const [aggregation] = await getNewsCount();
     console.log('aggregation', aggregation.count);

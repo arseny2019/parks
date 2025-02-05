@@ -18,7 +18,7 @@ async function getProjects() {
 }
 
 async function getNews() {
-    return directus.request(readItems('news', {limit: 3}));
+    return directus.request(readItems('news', {limit: 3, sort: ['-date']}));
 }
 
 async function getMainPageData() {
