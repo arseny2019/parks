@@ -129,7 +129,7 @@ const Header = ({withAnimation, directions}) => {
                             directions={directions}></Navigation>
                 <div className="absolute left-0 top-0 w-full">
                     <div ref={headerInnerRef} className="mx-auto flex justify-between items-center duration-200
-                    2xl:max-w-[1680px] 2xl:pl-[120px] 2xl:pr-[120px]
+                    2xl:max-w-[1680px] 3xl:pl-[120px] 3xl:pr-[120px]
                     lg:pr-10 lg:pl-10
                     md:pr-6
                     pl-6 pt-8 pr-4 pb-4

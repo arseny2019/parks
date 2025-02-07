@@ -4,6 +4,8 @@ import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import TechnologyModal from "@/components/technologyModal";
+import TechnologyGrid from "@/components/directions/technologyGrid";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -16,14 +18,14 @@ async function getDirectionDetail(slug) {
     }));
 }
 async function getTechnologies(ids) {
-    return directus.request(readItems('directions_technologies', {
+    return directus.request(readItems('technologies', {
         filter: {
             id:
                 {
                     '_in': ids
                 }
         },
-        fields: ['*']
+        fields: ['*', 'gallery.*']
     }));
 }
 
@@ -46,7 +48,7 @@ export default async function DirectionDetailPage({params}) {
     const [detail] = await getDirectionDetail(slug);
     let technologies;
     if (detail.technologies && detail.technologies.length > 0) {
-        technologies = await getTechnologies(detail.technologies.map(tech => tech.directions_technologies_id));
+        technologies = await getTechnologies(detail.technologies.map(tech => tech.technologies_id));
     }
     console.log('directions', directions);
     console.log('detail', detail);
@@ -67,7 +69,7 @@ export default async function DirectionDetailPage({params}) {
                     </div>
                 </div>
                 <Image width={1320} height={0} className="w-full h-full object-cover"
-                       src={getImageURL(detail.mainImage)}
+                       src={getImageURL(detail.image)}
                        alt={detail.title}></Image>
             </div>
             <div className="c-container
@@ -112,6 +114,13 @@ export default async function DirectionDetailPage({params}) {
                             </div>
                         ))}
                     </div>}
+                    {detail.gallery && detail.gallery.length > 0 && <div className="grid grid-cols-1 gap-y-8 md:gap-y-10">
+                        {detail.gallery.map(item => <Image
+                            key={item.directus_files_id}
+                            className="w-full aspect-[2] rounded-3xl object-cover"
+                            width={900} height={0} src={getImageURL(item.directus_files_id)} alt="Изображение из галереи"/>)}
+                    </div>}
+                    {technologies && technologies.length > 0 && <TechnologyGrid technologies={technologies}></TechnologyGrid>}
                 </div>
             </div>
             <div id="blackWrapper">
