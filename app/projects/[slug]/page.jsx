@@ -6,35 +6,23 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import TechnologyModal from "@/components/technologyModal";
 import TechnologyGrid from "@/components/directions/technologyGrid";
-import Link from "next/link";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
 }
 
-async function getDirectionDetail(slug) {
-    return directus.request(readItems('directions', {
+async function getProjectDetail(slug) {
+    return directus.request(readItems('projects', {
         filter: {slug},
-        fields: ['*', 'technologies.*', 'directions_technologies.*', 'gallery.*']
-    }));
-}
-
-async function getTechnologies(ids) {
-    return directus.request(readItems('technologies', {
-        filter: {
-            id:
-                {
-                    '_in': ids
-                }
-        },
         fields: ['*', 'gallery.*']
     }));
 }
 
+
 export async function generateMetadata({params, searchParams}, parent) {
     const slug = (await params).slug
 
-    const [item] = await directus.request(readItems('directions', {
+    const [item] = await directus.request(readItems('projects', {
         filter: {slug},
         fields: ['*']
     }));
@@ -45,30 +33,39 @@ export async function generateMetadata({params, searchParams}, parent) {
     }
 }
 
-export default async function DirectionDetailPage({params}) {
+export default async function ProjectDetailPage({params}) {
     const directions = await getDirections();
     const {slug} = await params;
-    const [detail] = await getDirectionDetail(slug);
-    let technologies;
-    if (detail.technologies && detail.technologies.length > 0) {
-        technologies = await getTechnologies(detail.technologies.map(tech => tech.technologies_id));
-    }
+    const [detail] = await getProjectDetail(slug);
     console.log('directions', directions);
     console.log('detail', detail);
-    console.log('technologies', technologies);
     return (
         <>
             <Header directions={directions} withAnimation={true}></Header>
             <div className="relative h-[600px] xl:h-[750px]">
                 <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient">
                     <div className="h-full c-container flex flex-col justify-end">
-                        <h1 className="font-roboto-condensed text-white font-[600] uppercase
-                            text-[36px] leading-[40px] pr-[56px] pb-[64px]
-                            md:pr-10 md:text-[50px] md:leading-[55px]
-                            lg:pr-[110px] lg:pb-[80px] lg:text-[60px] lg:leading-[66px]
-                            xl:text-[70px] xl:leading-[77px]
-                            2xl:pr-0 2xl:pb-[90px] 2xl:text-[80px] 2xl:leading-[88px]
-                        ">{detail.title}</h1>
+                        <div className="
+                            pr-[56px] pb-[64px]
+                            md:pr-10
+                            lg:pr-[110px] lg:pb-[80px]
+                            2xl:pr-0 2xl:pb-[90px]
+                        ">
+                            <h1 className="font-roboto-condensed text-white font-[600] uppercase
+                                text-[36px] leading-[40px]
+                                md:text-[50px] md:leading-[55px]
+                                lg:text-[60px] lg:leading-[66px]
+                                xl:text-[70px] xl:leading-[77px]
+                                2xl:text-[80px] 2xl:leading-[88px]
+                            ">{detail.title}</h1>
+                            <h4 className="font-roboto-condensed text-white font-[600] uppercase
+                                text-[24px] leading-[28px] mt-3
+                                md:text-[32px] md:leading-[36px]
+                                lg:text-[36px] lg:leading-[40px] lg:mt-5
+                                xl:text-[40px] xl:leading-[44px]
+                                2xl:text-[50px] 2xl:leading-[55px]
+                            ">{detail.subtitle}</h4>
+                        </div>
                     </div>
                 </div>
                 <Image width={1320} height={0} className="w-full h-full object-cover"
@@ -94,35 +91,36 @@ export default async function DirectionDetailPage({params}) {
                         xl:text-[40px] xl:leading-[60px]
                         2xl:text-[48px] 2xl:leading-[72px]
                     ">{detail.mainText}</h2>}
-                    {detail.features && detail.features.length > 0 && <div className="grid
+                    {detail.features && detail.features.length > 0 && <div>
+                        {detail.features_title && <h4 className="font-bold font-roboto-condensed uppercase
+                        text-[24px] leading-[36px] mb-8
+                        lg:text-[30px] lg:leading-[45px] lg:mb-16
+                        ">{detail.features_title}</h4>}
+                        <div className="grid
                         grid-cols-1 gap-y-[40px]
                         md:grid-cols-2 md:gap-x-6
                         ">
-                        {detail.features.map(feature => (
-                            <div key={feature.title || feature.description} className="custom-list-item flex flex-col
+                            {detail.features.map(feature => (
+                                <div key={feature.title || feature.description} className="custom-list-item flex flex-col
                                 gap-y-[6px]
                                 sm:gap-y-2
                                 md:gap-y-3 md:pr-8
                             ">
-                                {feature.title && <p className="font-[500]
+                                    {feature.title && <p className="font-[500]
                                     text-[18px] leading-[27px]
                                     xl:text-[22px] xl:leading-[33px]
                                 ">{feature.title}</p>}
-                                {feature.description && <p className="text-secondary-black
+                                    {feature.description && <p className="text-secondary-black
                                     text-[16px] leading-6
                                     md:text-[18px] md:leading-[27px]
                                 ">
-                                    {feature.description}
-                                </p>}
-                                {feature.link && <Link
-                                    className="font-roboto font-[600] text-main-green
-                                        text-[16px] leading-6
-                                        md:text-[18px] md:leading-[27px]
-                                    "
-                                    href={feature.link}>Подробнее</Link>}
-                            </div>
-                        ))}
+                                        {feature.description}
+                                    </p>}
+                                </div>
+                            ))}
+                        </div>
                     </div>}
+
                     {detail.gallery && detail.gallery.length > 0 &&
                         <div className="grid grid-cols-1 gap-y-8 md:gap-y-10">
                             {detail.gallery.map(item => <Image
@@ -131,8 +129,6 @@ export default async function DirectionDetailPage({params}) {
                                 width={900} height={0} src={getImageURL(item.directus_files_id)}
                                 alt="Изображение из галереи"/>)}
                         </div>}
-                    {technologies && technologies.length > 0 &&
-                        <TechnologyGrid technologies={technologies}></TechnologyGrid>}
                 </div>
             </div>
             <div id="blackWrapper">

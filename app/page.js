@@ -8,6 +8,7 @@ import MainProjectsBlock from "@/components/main-page/mainProjectsBlock";
 import MainNewsBlock from "@/components/main-page/mainNewsBlock";
 import Footer from "@/components/footer";
 import MainMapBlock from "@/components/main-page/mainMapBlock";
+import Link from "next/link";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -47,7 +48,22 @@ export default async function Home() {
                     directionsBlockText={data.directionsBlockText}
                     directions={directions}
                 ></MainDirectionsBlock>
-                <MainProjectsBlock projects={projects}></MainProjectsBlock>
+                <div className="c-container mt-[100px] md:mt-[120px] xl:mt-[150px] ">
+                            <h3 className="uppercase
+                    text-[32px] leading-[42px]
+                    md:text-[36px] md:leading-[54px]
+                    ">Проекты</h3>
+                    <MainProjectsBlock projects={projects}></MainProjectsBlock>
+                </div>
+                <div className="c-container">
+                    <Link className="block text-center w-full font-[500] bg-[rgba(10,_10,_10,_0.08)] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-[rgba(10,_10,_10,_0.8)]
+                        mt-6 py-5 text-[16px] leading-6 rounded-[32px]
+                        xl:py-6 xl:text-[18px] xl:rounded-[36px]
+                        lg:mt-8
+                        " href="/projects">
+                        Посмотреть все проекты
+                    </Link>
+                </div>
                 <MainNewsBlock news={news}></MainNewsBlock>
             </div>
             <div id="blackWrapper">

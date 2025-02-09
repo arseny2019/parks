@@ -36,6 +36,7 @@ export default {
                 'secondary-white': 'rgba(255, 255, 255, 0.8)',
                 'placeholder-black': 'rgba(10, 10, 10, 0.4)',
                 'placeholder-white': 'rgba(255, 255, 255, 0.4)',
+                'main-green': 'rgba(57, 180, 98, 1)',
             },
         },
     },
