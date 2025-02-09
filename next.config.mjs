@@ -7,6 +7,7 @@ const nextConfig = {
                 hostname: "**",
             },
         ],
+        dangerouslyAllowSVG: true,
     },
     webpack: (config) => {
         // Solve compiling problem via vagrant
