@@ -4,12 +4,15 @@ import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import TechnologyModal from "@/components/technologyModal";
 import TechnologyGrid from "@/components/directions/technologyGrid";
 import Link from "next/link";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
+}
+
+async function getContacts() {
+    return directus.request(readItems('contacts'));
 }
 
 async function getDirectionDetail(slug) {
@@ -47,18 +50,16 @@ export async function generateMetadata({params, searchParams}, parent) {
 
 export default async function DirectionDetailPage({params}) {
     const directions = await getDirections();
+    const contacts = await getContacts();
     const {slug} = await params;
     const [detail] = await getDirectionDetail(slug);
     let technologies;
     if (detail.technologies && detail.technologies.length > 0) {
         technologies = await getTechnologies(detail.technologies.map(tech => tech.technologies_id));
     }
-    console.log('directions', directions);
-    console.log('detail', detail);
-    console.log('technologies', technologies);
     return (
         <>
-            <Header directions={directions} withAnimation={true}></Header>
+            <Header contacts={contacts} directions={directions} withAnimation={true}></Header>
             <div className="relative h-[600px] xl:h-[750px]">
                 <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient">
                     <div className="h-full c-container flex flex-col justify-end">
@@ -87,13 +88,13 @@ export default async function DirectionDetailPage({params}) {
                     xl:gap-y-[120px]
                     2xl:gap-y-[150px]
                 ">
-                    {detail.mainText && <h2 className="font-[400] font-roboto
+                    {detail.content && <h2 className="font-[400] font-roboto
                         text-[22px] leading-[33px]
                         sm:text-[24px] sm:leading-[36px]
                         lg:text-[36px] lg:leading-[54px]
                         xl:text-[40px] xl:leading-[60px]
                         2xl:text-[48px] 2xl:leading-[72px]
-                    ">{detail.mainText}</h2>}
+                    ">{detail.content}</h2>}
                     {detail.features && detail.features.length > 0 && <div className="grid
                         grid-cols-1 gap-y-[40px]
                         md:grid-cols-2 md:gap-x-6
@@ -136,7 +137,7 @@ export default async function DirectionDetailPage({params}) {
                 </div>
             </div>
             <div id="blackWrapper">
-                <Footer directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>
     )

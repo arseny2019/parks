@@ -1,12 +1,15 @@
 import directus from "@/lib/directus";
-import {aggregate, readItems} from "@directus/sdk";
+import {readItems} from "@directus/sdk";
 import BlackHeader from "@/components/blackHeader";
 import Footer from "@/components/footer";
-import {formatDate} from "@/helpers/formatDate";
 import NewsDetail from "@/components/news/newsDetail";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
+}
+
+async function getContacts() {
+    return directus.request(readItems('contacts'));
 }
 
 async function getNewsDetail(slug) {
@@ -31,16 +34,16 @@ async function getNextNews(date) {
 const NewsDetailPage = async ({params}) => {
     const pars = await params;
     const directions = await getDirections();
+    const contacts = await getContacts();
     const [detail] = await getNewsDetail(pars.slug);
     const res = await getNextNews(detail.date);
-    console.log('detail', detail);
 
     return(
         <>
-            <BlackHeader directions={directions}></BlackHeader>
+            <BlackHeader contacts={contacts} directions={directions}></BlackHeader>
             <NewsDetail detail={detail} previousNews={res[0] || false}/>
             <div id="blackWrapper">
-                <Footer directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>
     )

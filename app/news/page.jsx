@@ -23,9 +23,13 @@ async function getDirections() {
     return directus.request(readItems('directions'));
 }
 
+async function getContacts() {
+    return directus.request(readItems('contacts'));
+}
 
 export default async function NewsArchivePage() {
     const directions = await getDirections();
+    const contacts = await getContacts();
     const limit = 9;
     const page = 0;
     const [aggregation] = await getNewsCount();
@@ -34,7 +38,7 @@ export default async function NewsArchivePage() {
     console.log('archive news', news);
     return (
         <>
-            <BlackHeader directions={directions}></BlackHeader>
+            <BlackHeader contacts={contacts} directions={directions}></BlackHeader>
             <div className="c-container
                 pb-[80px]
                 md:pb-[120px]
@@ -53,7 +57,7 @@ export default async function NewsArchivePage() {
                 <NewsArchiveGrid page={page} limit={limit} news={news} totalCount={aggregation.count}></NewsArchiveGrid>
             </div>
             <div id="blackWrapper">
-                <Footer directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>
     )

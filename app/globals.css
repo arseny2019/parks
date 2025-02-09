@@ -35,3 +35,7 @@ body.menu-open {
 :root {
     --scrollbar-width: 0; /* Initialize the value*/
 }
+
+.icon-wrapper:hover svg {
+    opacity: 0.8;
+}

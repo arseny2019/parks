@@ -19,14 +19,18 @@ async function getArchivePageData() {
     return directus.request(readItems('projectsPage'));
 }
 
+async function getContacts() {
+    return directus.request(readItems('contacts'));
+}
 
 export default async function ProjectsArchivePage() {
     const projects = await getProjects();
     const directions = await getDirections();
+    const contacts = await getContacts();
     const detail = await getArchivePageData();
     return (
         <>
-            <Header directions={directions} withAnimation={true}></Header>
+            <Header contacts={contacts} directions={directions} withAnimation={true}></Header>
             <div className="relative h-[600px] xl:h-[750px]">
                 <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient">
                     <div className="h-full c-container flex flex-col justify-end">
@@ -70,7 +74,7 @@ export default async function ProjectsArchivePage() {
                 </div>
             </div>
             <div id="blackWrapper">
-                <Footer directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>
     )

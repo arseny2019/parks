@@ -18,6 +18,10 @@ async function getProjectDetail(slug) {
     }));
 }
 
+async function getContacts() {
+    return directus.request(readItems('contacts'));
+}
+
 
 export async function generateMetadata({params, searchParams}, parent) {
     const slug = (await params).slug
@@ -35,13 +39,14 @@ export async function generateMetadata({params, searchParams}, parent) {
 
 export default async function ProjectDetailPage({params}) {
     const directions = await getDirections();
+    const contacts = await getContacts();
     const {slug} = await params;
     const [detail] = await getProjectDetail(slug);
     console.log('directions', directions);
     console.log('detail', detail);
     return (
         <>
-            <Header directions={directions} withAnimation={true}></Header>
+            <Header contacts={contacts} directions={directions} withAnimation={true}></Header>
             <div className="relative h-[600px] xl:h-[750px]">
                 <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient">
                     <div className="h-full c-container flex flex-col justify-end">
@@ -132,7 +137,7 @@ export default async function ProjectDetailPage({params}) {
                 </div>
             </div>
             <div id="blackWrapper">
-                <Footer directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>
     )

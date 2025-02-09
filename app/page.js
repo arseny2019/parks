@@ -26,15 +26,20 @@ async function getMainPageData() {
     return directus.request(readItems('mainPage'));
 }
 
+async function getContacts() {
+    return directus.request(readItems('contacts'));
+}
+
 export default async function Home() {
     const projects = await getProjects();
+    const contacts = await getContacts();
     const directions = await getDirections();
     const data = await getMainPageData();
     const news = await getNews();
     console.log('news', news);
     return (
         <>
-            <Header directions={directions} withAnimation={true}></Header>
+            <Header contacts={contacts} directions={directions} withAnimation={true}></Header>
             <div className="md:fixed md:z-[-1] md:left-0 md:top-0 xl:min-h-[900px] h-[100vh] w-full">
                 <MainTopBlock
                     topBlockImage={data.topBlockImage}
@@ -68,7 +73,7 @@ export default async function Home() {
             </div>
             <div id="blackWrapper">
                 <MainMapBlock></MainMapBlock>
-                <Footer directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>
     );

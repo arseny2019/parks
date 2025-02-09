@@ -1,7 +1,6 @@
 import directus from "@/lib/directus";
 import {readItems} from "@directus/sdk";
 import BlackHeader from "@/components/blackHeader";
-import NewsArchiveGrid from "@/components/news/newsArchiveGrid";
 import Footer from "@/components/footer";
 import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
@@ -15,9 +14,13 @@ async function getPartners() {
     return directus.request(readItems('partners', {fields: ['*']}));
 }
 
+async function getContacts() {
+    return directus.request(readItems('contacts'));
+}
 
 export default async function PartnersPage() {
     const directions = await getDirections();
+    const contacts = await getContacts();
     const partners = await getPartners();
     const businessPartners = partners
         .filter(partner => partner.type === 'business');
@@ -26,7 +29,7 @@ export default async function PartnersPage() {
 
     return (
         <>
-            <BlackHeader directions={directions}></BlackHeader>
+            <BlackHeader contacts={contacts} directions={directions}></BlackHeader>
             <div className="c-container
                 pb-[80px]
                 md:pb-[120px]
@@ -102,7 +105,7 @@ export default async function PartnersPage() {
                 </div>}
             </div>
             <div id="blackWrapper">
-                <Footer directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>
     )
