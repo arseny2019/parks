@@ -32,6 +32,7 @@ export default {
             },
             colors: {
                 'main-black': '#0A0A0A',
+                'background-black': 'rgba(10, 10, 10, 1)',
                 'secondary-black': 'rgba(10, 10, 10, 0.8)',
                 'secondary-white': 'rgba(255, 255, 255, 0.8)',
                 'placeholder-black': 'rgba(10, 10, 10, 0.4)',

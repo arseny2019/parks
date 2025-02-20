@@ -4,6 +4,7 @@ import BlackHeader from "@/components/blackHeader";
 import Footer from "@/components/footer";
 import Link from "next/link";
 import {formatPhone} from "@/helpers/formatPhone";
+import ContactForm from "@/components/contactForm";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -35,7 +36,7 @@ export default async function ContactsPage() {
                     2xl:pt-[362px] 2xl:pb-[100px]
                 ">
                     <h1 className="uppercase">
-                        Приветствую
+                        <span className="text-main-green">Приветствую</span>
                         <br/>Мы на связи
                     </h1>
                 </div>
@@ -73,9 +74,10 @@ export default async function ContactsPage() {
                             ">{detail.address}</p>
                         </div>
                         <div className="flex gap-x-4">
-                            <Link className="icon-wrapper flex justify-center items-center text-white rounded-[50%] p-4 bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
-                                  href={detail.vk}
-                                  target="_blank">
+                            <Link
+                                className="icon-wrapper flex justify-center items-center text-white rounded-[50%] p-4 bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
+                                href={detail.vk}
+                                target="_blank">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      className="duration-200"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -84,9 +86,10 @@ export default async function ContactsPage() {
                                         fill="currentColor"/>
                                 </svg>
                             </Link>
-                            <Link className="icon-wrapper flex justify-center items-center text-white rounded-[50%] p-4 bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
-                                  href={detail.telegram}
-                                  target="_blank">
+                            <Link
+                                className="icon-wrapper flex justify-center items-center text-white rounded-[50%] p-4 bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
+                                href={detail.telegram}
+                                target="_blank">
                                 <svg width="24" height="24" className="duration-200"
                                      viewBox="0 0 24 24"
                                      fill="none"
@@ -98,6 +101,7 @@ export default async function ContactsPage() {
                             </Link>
                         </div>
                     </div>
+                    <ContactForm></ContactForm>
                 </div>
             </div>
             <div id="blackWrapper">

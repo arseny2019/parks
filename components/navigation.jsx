@@ -102,7 +102,7 @@ const Navigation = ({directions, active, closeCallback, contacts}) => {
                                 md:text-[22px] md:leading-[33px]
                                 2xl:text-[24px] 2xl:leading-[36px]
                                 text-secondary-white hover:text-white duration-200"
-                                href={'/directions/' + direction.id}
+                                href={'/directions/' + direction.slug}
                                 key={direction.title + direction.id}>
                                 {direction.title}
                             </Link>))}
