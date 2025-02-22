@@ -52,7 +52,7 @@ const Footer = ({directions, contacts}) => {
                             <div className="mt-6 flex flex-col gap-y-5 items-start">
                                 {directions.map((direction, index) => (<Link
                                     className="
-                                text-[14px] leading-[21px]
+                                text-[14px] leading-[21px] font-roboto-condensed font-[400]
                                 md:text-[16px] md:leading-[24px]
                                 text-secondary-white hover:text-white duration-200"
                                     href={'/directions/' + direction.slug}
@@ -66,19 +66,19 @@ const Footer = ({directions, contacts}) => {
                             text-placeholder-white uppercase">Информация</p>
                             <div className="mt-6 flex flex-col gap-y-5 items-start">
                                 <Link
-                                    className="
+                                    className="font-roboto-condensed font-[400]
                             text-[14px] leading-[21px]
                             md:text-[16px] md:leading-[24px]
                             text-secondary-white hover:text-white duration-200"
                                     href={'/news/'}>Новости</Link>
                                 <Link
-                                    className="
+                                    className="font-roboto-condensed font-[400]
                             text-[14px] leading-[21px]
                             md:text-[16px] md:leading-[24px]
                             text-secondary-white hover:text-white duration-200"
                                     href={'/partners/'}>Партнеры</Link>
                                 <Link
-                                    className="
+                                    className="font-roboto-condensed font-[400]
                             text-[14px] leading-[21px]
                             md:text-[16px] md:leading-[24px]
                             text-secondary-white hover:text-white duration-200"

@@ -72,7 +72,7 @@ export default async function Home() {
                 <MainNewsBlock news={news}></MainNewsBlock>
             </div>
             <div id="blackWrapper">
-                <MainMapBlock></MainMapBlock>
+                <MainMapBlock mapBlockText={data.mapBlockText} mapBlockLink={data.mapBlockLink}></MainMapBlock>
                 <Footer contacts={contacts} directions={directions}></Footer>
             </div>
         </>

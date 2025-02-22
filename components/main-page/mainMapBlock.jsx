@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const MainMapBlock = ({}) => {
+const MainMapBlock = ({mapBlockText, mapBlockLink}) => {
 
     return (
         <div className="radial-gradient border-b-[1px] border-[rgba(255,_255,_255,_0.06)]">
@@ -24,10 +24,7 @@ const MainMapBlock = ({}) => {
                         <p className="text-[16px] leading-6 font-inter text-center
                         lg:text-[18px] lg:leading-[27px]
                         xl:text-[20px] xl:leading-[30px]
-                        ">Создание в городах точек
-                            притяжения людей — пространств, направленных на социальную интеграцию,
-                            развитие культурной и общественной жизни людей, повышение экономической ценности
-                            городов.</p>
+                        ">{mapBlockText}</p>
                         <Link
                             className="rounded-[28px] bg-white text-main-black mt-8 px-6 py-4 text-[16px] leading-6 font-[500]"
                             target="_blank" href="/">Перейти на сайт</Link>

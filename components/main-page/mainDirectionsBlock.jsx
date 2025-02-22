@@ -18,7 +18,7 @@ const MainDirectionsBlock = ({directionsBlockText, directions}) => {
                 xl:gap-8 xl:mt-[120px]
             ">
                 {directions && directions.map((direction, index) => (
-                    <Link className={index !== 6 && index !== 7 ? 'col-span-6 md:col-span-3 lg:col-span-2' : 'col-span-6 md:col-span-3'}
+                    <Link className={'col-span-6 md:col-span-3 lg:col-span-2'}
                           href={'/directions/' + direction.slug} key={direction.title + direction.id}>
                         <div className="bg-[rgba(10,_10,_10,_0.04)] hover:bg-[rgba(10,_10,_10,_0.08)] duration-300 relative
                             h-[200px] rounded-3xl p-6

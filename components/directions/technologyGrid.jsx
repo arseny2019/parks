@@ -3,7 +3,7 @@ import TechnologyModal from "@/components/technologyModal";
 import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
 
-const TechnologyGrid = ({ technologies }) => {
+const TechnologyGrid = ({ technologies, technologies_title }) => {
 
     return(
         <>
@@ -11,7 +11,7 @@ const TechnologyGrid = ({ technologies }) => {
                 <h3 className="uppercase font-roboto-condensed font-bold
                             text-[28px] leading-[120%]
                             md:text-[36px]
-                        ">Технологии</h3>
+                        ">{technologies_title}</h3>
                 <div className="mt-6 grid grid-cols-1
                         gap-y-6
                         lg:gap-y-8

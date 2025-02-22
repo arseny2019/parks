@@ -88,12 +88,11 @@ export default async function DirectionDetailPage({params}) {
                     xl:gap-y-[120px]
                     2xl:gap-y-[150px]
                 ">
-                    {detail.content && <h2 className="font-[400] font-roboto
-                        text-[22px] leading-[33px]
-                        sm:text-[24px] sm:leading-[36px]
-                        lg:text-[36px] lg:leading-[54px]
-                        xl:text-[40px] xl:leading-[60px]
-                        2xl:text-[48px] 2xl:leading-[72px]
+                    {detail.content && <h2 className="font-[400] font-roboto leading-[150%]
+                        text-[22px]
+                        md:text-[24px]
+                        lg:text-[28px]
+                        xl:text-[36px]
                     ">{detail.content}</h2>}
                     {detail.features && detail.features.length > 0 && <div className="grid
                         grid-cols-1 gap-y-[40px]
@@ -133,7 +132,7 @@ export default async function DirectionDetailPage({params}) {
                                 alt="Изображение из галереи"/>)}
                         </div>}
                     {technologies && technologies.length > 0 &&
-                        <TechnologyGrid technologies={technologies}></TechnologyGrid>}
+                        <TechnologyGrid technologies_title={detail.technologies_title} technologies={technologies}></TechnologyGrid>}
                 </div>
             </div>
             <div id="blackWrapper">
