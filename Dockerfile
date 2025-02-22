@@ -7,11 +7,11 @@ WORKDIR /
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
 RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i; \
+  if [ -f yarn.lock ]; then yarn --frozen-lockfile --legacy-peer-deps; \
+  elif [ -f package-lock.json ]; then npm ci --legacy-peer-deps; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --legacy-peer-deps; \
   # Allow install without lockfile, so example works even without Node.js installed locally
-  else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install; \
+  else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install --legacy-peer-deps; \
   fi
 
 COPY app ./app
