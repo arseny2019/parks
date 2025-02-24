@@ -7,24 +7,25 @@ const TechnologyModal = ({technology}) => {
     const overlay = useRef(null);
     const modalRef = useRef(null);
 
+    const closeModal = () => {
+        overlay?.current.classList.add('opacity-0', 'invisible');
+        modalRef?.current.classList.add('translate-x-[100%]');
+        document.body.classList.remove('menu-open');
+    }
+
     return (
         <>
-            <div ref={overlay} className="duration-300 modal-overlay invisible opacity-0 z-[98] fixed right-0 top-0 w-full h-full bg-[rgba(10,_10,_10,_0.5)]"></div>
+            <div onClick={() => closeModal()} ref={overlay} className="duration-300 modal-overlay invisible opacity-0 z-[98] fixed right-0 top-0 w-full h-full bg-[rgba(10,_10,_10,_0.5)]"></div>
             <div ref={modalRef}
                 className="duration-300 modal-container translate-x-[100%] z-[99] fixed right-0 top-0 w-full h-full max-w-[1000px] bg-white
-                py-6 px-4
+                py-12 px-4
                 md:px-8
                 lg:py-[80px] lg:px-[50px] overflow-y-auto">
-                <div onClick={() => {
-                    overlay?.current.classList.add('opacity-0', 'invisible');
-                    modalRef?.current.classList.add('translate-x-[100%]');
-                    document.body.classList.remove('menu-open');
-                }} className="cursor-pointer absolute right-4 top-4 w-[40px] h-[40px]">
+                <div onClick={() => closeModal()} className="cursor-pointer absolute right-4 top-4 w-[40px] h-[40px]">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="12.0762" y="11.1621" width="23" height="2" transform="rotate(45 12.0762 11.1621)"
-                              fill="#0A0A0A" fillOpacity="0.4"/>
-                        <rect x="10.6621" y="27.4238" width="23" height="2" transform="rotate(-45 10.6621 27.4238)"
-                              fill="#0A0A0A" fillOpacity="0.4"/>
+                        <path fillRule="evenodd" clipRule="evenodd"
+                              d="M19.5002 18.5859L12.0753 11.1611L10.6611 12.5753L18.0859 20.0002L10.6613 27.4248L12.0755 28.839L19.5002 21.4144L26.9246 28.8388L28.3388 27.4246L20.9144 20.0002L28.339 12.5756L26.9247 11.1613L19.5002 18.5859Z"
+                              fill="#0A0A0A"/>
                     </svg>
                 </div>
                 <div>

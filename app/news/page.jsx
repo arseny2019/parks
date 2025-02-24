@@ -45,7 +45,7 @@ export default async function NewsArchivePage() {
                 xl:pb-[150px]
                 2xl:pb-[200px]
             ">
-                <div className=" border-b-[1px] border-[rgba(10,_10,_10,_0.06)]
+                <div className="screen-width-line
                     pt-[292px] pb-16
                     md:pt-[301px]
                     lg:pt-[284px] lg:pb-[80px]

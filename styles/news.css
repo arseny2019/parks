@@ -5,7 +5,10 @@
 }
 
 .news-content * + p {
-    margin-top: 32px;
+    margin-top: 16px;
+}
+.news-content img {
+    margin: 32px 0;
 }
 
 .news-content h6 {
@@ -14,4 +17,8 @@
 
 .news-content p, .news-content span {
     @apply font-inter font-[400] text-[17px] leading-[26px] md:text-[18px] md:leading-[27px];
+}
+
+.news-content a {
+    @apply text-main-green duration-200 hover:text-secondary-green;
 }

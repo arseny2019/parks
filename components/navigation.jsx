@@ -98,7 +98,7 @@ const Navigation = ({directions, active, closeCallback, contacts}) => {
                         <div className="mt-6 flex flex-col gap-y-8 items-start pr-10">
                             {directions.map((direction, index) => (<Link
                                 className="
-                                text-[20px] leading-[30px] font-bold uppercase
+                                text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
                                 md:text-[22px] md:leading-[33px]
                                 2xl:text-[24px] 2xl:leading-[36px]
                                 text-secondary-white hover:text-white duration-200"
@@ -114,19 +114,19 @@ const Navigation = ({directions, active, closeCallback, contacts}) => {
                             text-placeholder-white uppercase">Информация</p>
                         <div className="mt-6 flex flex-col gap-y-5 items-start">
                             <Link
-                                className="text-[20px] leading-[30px] font-bold uppercase
+                                className="text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
                                 md:text-[22px] md:leading-[33px]
                                 2xl:text-[24px] 2xl:leading-[36px]
                                 text-secondary-white hover:text-white duration-200"
                                 href={'/news/'}>Новости</Link>
                             <Link
-                                className="text-[20px] leading-[30px] font-bold uppercase
+                                className="text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
                                 md:text-[22px] md:leading-[33px]
                                 2xl:text-[24px] 2xl:leading-[36px]
                                 text-secondary-white hover:text-white duration-200"
                                 href={'/partners/'}>Партнеры</Link>
                             <Link
-                                className="text-[20px] leading-[30px] font-bold uppercase
+                                className="text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
                                 md:text-[22px] md:leading-[33px]
                                 2xl:text-[24px] 2xl:leading-[36px]
                                 text-secondary-white hover:text-white duration-200"

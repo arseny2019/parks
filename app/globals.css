@@ -39,3 +39,17 @@ body.menu-open {
 .icon-wrapper:hover svg {
     opacity: 0.8;
 }
+
+.screen-width-line {
+    position: relative;
+}
+
+.screen-width-line::after {
+    content: '';
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 50vw);
+    height: 1px;
+    @apply bg-[rgba(10,_10,_10,_0.06)];
+}

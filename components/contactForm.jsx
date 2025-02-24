@@ -54,7 +54,7 @@ export default function ContactForm() {
                         },
                     })
                     }
-                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-3xl placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
+                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
                     placeholder="Телефон*" type="text" name="phone"/>
                 <input
                     {...register('email', {
@@ -64,16 +64,16 @@ export default function ContactForm() {
                             message: 'Invalid email address',
                         },
                     })}
-                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-3xl placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
+                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
                     placeholder="Email*" type="text" name="email"/>
                 <input
                     {...register('name')}
-                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-3xl placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
+                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
                     placeholder="Ваше имя" type="text" name="name"/>
                 <textarea
                     {...register('question')}
                     maxLength={512}
-                    className="resize-none h-[120px] block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-3xl placeholder:text-placeholder-black text-[16px] leading-[150%] xl:text-[18px] text-main-black"
+                    className="resize-none h-[120px] block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] xl:text-[18px] text-main-black"
                     placeholder="Расскажите о вашем проекте" name="question" rows="4"></textarea>
             </div>
 

@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import TechnologyModal from "@/components/technologyModal";
 import TechnologyGrid from "@/components/directions/technologyGrid";
+import Link from "next/link";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -103,7 +104,8 @@ export default async function ProjectDetailPage({params}) {
                         ">{detail.features_title}</h4>}
                         <div className="grid
                         grid-cols-1 gap-y-[40px]
-                        md:grid-cols-2 md:gap-x-6
+                        md:grid-cols-2 md:gap-x-6 md:gap-y-[48px]
+                        xl:gap-y-[80px]
                         ">
                             {detail.features.map(feature => (
                                 <div key={feature.title || feature.description} className="custom-list-item flex flex-col
@@ -134,6 +136,11 @@ export default async function ProjectDetailPage({params}) {
                                 width={900} height={0} src={getImageURL(item.directus_files_id)}
                                 alt="Изображение из галереи"/>)}
                         </div>}
+                    
+                    <Link href="/contacts" className="block text-center w-full font-[500] bg-[rgba(10,_10,_10,_0.08)] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-[rgba(10,_10,_10,_0.8)]
+                       py-5 text-[16px] leading-6 rounded-[32px]
+                       xl:py-6 xl:text-[18px] xl:rounded-[36px]
+                    ">Связаться с нами</Link>
                 </div>
             </div>
             <div id="blackWrapper">

@@ -28,7 +28,7 @@ export default async function ContactsPage() {
                 xl:pb-[150px]
                 2xl:pb-[200px]
             ">
-                <div className=" border-b-[1px] border-[rgba(10,_10,_10,_0.06)]
+                <div className="screen-width-line
                     pt-[292px] pb-16
                     md:pt-[301px]
                     lg:pt-[284px] lg:pb-[80px]
@@ -45,7 +45,7 @@ export default async function ContactsPage() {
                     md:mt-[120px] md:gap-y-[120px]
                     xl:mt-[150px] xl:grid-cols-2 md:gap-x-[32px]
                 ">
-                    <div className="grid grid-cols-1
+                    <div className="flex flex-col
                         gap-y-6
                         md:gap-y-8
                     ">

@@ -23,7 +23,7 @@ const NewsDetail = ({detail, previousNews}) => {
                        xl:py-6 xl:text-[18px] xl:rounded-[36px]
                     ">Следующая новость</Link>}
                     <Link
-                        className="block border border-[rgba(10,_10,_10,_0.12)] text-center w-full font-[500] duration-200 text-black hover:text-secondary-black
+                        className="block border border-[rgba(10,_10,_10,_0.12)] text-center w-full font-[500] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-secondary-black
                            py-5 text-[16px] leading-6 rounded-[32px]
                            xl:py-6 xl:text-[18px] xl:rounded-[36px]
                         "
