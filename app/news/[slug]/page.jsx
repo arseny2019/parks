@@ -41,7 +41,9 @@ const NewsDetailPage = async ({params}) => {
     return(
         <>
             <BlackHeader contacts={contacts} directions={directions}></BlackHeader>
-            <NewsDetail detail={detail} previousNews={res[0] || false}/>
+            <div className="c-container">
+                <NewsDetail detail={detail} previousNews={res[0] || false}/>
+            </div>
             <div id="blackWrapper">
                 <Footer contacts={contacts} directions={directions}></Footer>
             </div>

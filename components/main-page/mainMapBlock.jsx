@@ -4,7 +4,7 @@ import Link from "next/link";
 const MainMapBlock = ({mapBlockText, mapBlockLink}) => {
 
     return (
-        <div className="radial-gradient border-b-[1px] border-[rgba(255,_255,_255,_0.06)]">
+        <div className="map-gradient border-b-[1px] border-[rgba(255,_255,_255,_0.06)]">
             <div className="c-container flex items-center justify-center map-background text-white
                 h-[640px]
                 sm:h-[700px]

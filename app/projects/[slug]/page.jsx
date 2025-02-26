@@ -138,8 +138,8 @@ export default async function ProjectDetailPage({params}) {
                         </div>}
                     
                     <Link href="/contacts" className="block text-center w-full font-[500] bg-[rgba(10,_10,_10,_0.08)] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-[rgba(10,_10,_10,_0.8)]
-                       py-5 text-[16px] leading-6 rounded-[32px]
-                       xl:py-6 xl:text-[18px] xl:rounded-[36px]
+                       py-[30px] text-[20px] leading-[150%] rounded-[45px]
+                       lg:py-[40px] lg:text-[22px] lg:rounded-[57px]
                     ">Связаться с нами</Link>
                 </div>
             </div>

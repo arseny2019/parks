@@ -5,6 +5,9 @@
 .dark-gradient {
     background-image: linear-gradient(rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 0.9));
 }
+.map-gradient {
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 1)), radial-gradient(rgba(10, 10, 10, 0.91), rgba(10, 10, 10, 1));
+}
 
 .projects-gradient {
     transition: 300ms;
@@ -15,21 +18,6 @@
 
 .project-card:hover .projects-gradient {
     opacity: 1;
-}
-
-/*.projects-gradient {*/
-/*    background: linear-gradient(-45deg, #ed193b, #a98055, #f286e2, #681d7a);*/
-/*    background-size: 400% 400%;*/
-/*    animation: gradient 10s ease infinite;*/
-/*}*/
-/*@keyframes gradient {*/
-/*    0% { background-position: 0% 50%; }*/
-/*    50% { background-position: 100% 50%; }*/
-/*    100% { background-position: 0% 50%; }*/
-/*}*/
-
-.radial-gradient {
-    background-image: radial-gradient(rgba(10, 10, 10, 0.91), rgba(10, 10, 10, 1));
 }
 
 .map-background {

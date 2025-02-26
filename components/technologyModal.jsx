@@ -21,7 +21,7 @@ const TechnologyModal = ({technology}) => {
                 py-12 px-4
                 md:px-8
                 lg:py-[80px] lg:px-[50px] overflow-y-auto">
-                <div onClick={() => closeModal()} className="cursor-pointer absolute right-4 top-4 w-[40px] h-[40px]">
+                <div onClick={() => closeModal()} className="opacity-40 duration-200 hover:opacity-100 cursor-pointer absolute right-4 top-4 w-[40px] h-[40px]">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd"
                               d="M19.5002 18.5859L12.0753 11.1611L10.6611 12.5753L18.0859 20.0002L10.6613 27.4248L12.0755 28.839L19.5002 21.4144L26.9246 28.8388L28.3388 27.4246L20.9144 20.0002L28.339 12.5756L26.9247 11.1613L19.5002 18.5859Z"

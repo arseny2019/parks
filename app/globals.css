@@ -36,6 +36,10 @@ body.menu-open {
     --scrollbar-width: 0; /* Initialize the value*/
 }
 
+.icon-wrapper {
+    @apply text-white;
+}
+
 .icon-wrapper:hover svg {
     opacity: 0.8;
 }
