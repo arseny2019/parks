@@ -45,6 +45,7 @@ export default async function Home() {
                     topBlockImage={data.topBlockImage}
                     topBlockText={data.topBlockText}
                     topBlockVideo={data.topBlockVideo}
+                    topBlockVideoPreview={data.topBlockVideoPreview}
                 ></MainTopBlock>
             </div>
             <div className="xl:min-h-[900px] md:h-[100vh]"></div>
