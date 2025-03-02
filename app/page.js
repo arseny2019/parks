@@ -70,7 +70,7 @@ export default async function Home() {
                     directions={directions}
                 ></MainDirectionsBlock>
                 <div className="c-container mt-[100px] md:mt-[120px] xl:mt-[150px] ">
-                            <h3 className="uppercase
+                            <h3 className="mb-6 uppercase
                     text-[32px] leading-[42px]
                     md:text-[36px] md:leading-[54px]
                     ">{data.projectsTitle}</h3>
