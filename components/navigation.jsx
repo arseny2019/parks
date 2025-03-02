@@ -116,9 +116,10 @@ const Navigation = ({directions, active, closeCallback, contacts, menu}) => {
                             {menu?.elements.map((elem) => <Link
                                 key={elem.label + elem.link + 'footer'}
                                 className="
-                            text-[14px] leading-[21px]
-                            md:text-[16px] md:leading-[24px]
-                            text-secondary-white hover:text-white duration-200"
+                            text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
+                                md:text-[22px] md:leading-[33px]
+                                2xl:text-[24px] 2xl:leading-[36px]
+                                text-secondary-white hover:text-white duration-200"
                                 href={elem.link}>{elem.label}</Link>)}
                         </div>
                     </div>
