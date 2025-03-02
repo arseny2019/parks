@@ -31,7 +31,7 @@ const TechnologyGrid = ({ technologies, technologies_title }) => {
                         <p className="text-left uppercase absolute left-0 top-0 w-full h-full z-[2] px-6 py-8 text-white text-[28px] leading-[34px] font-roboto-condensed font-bold
                                 lg:text-[36px] lg:leading-[43px]
                                 xl:pt-12 xl:pl-10 xl:pr-[54px] xl:text-[40px] xl:leading-[48px]">{item.title}</p>
-                        <Image width={1360} height={0} src={getImageURL(item.image)}
+                        <Image quality={100} width={1360} height={0} src={getImageURL(item.image)}
                                className="absolute left-0 top-0 rounded-3xl h-full w-full object-cover"
                                alt={item.title}/>
                     </button></div>)}

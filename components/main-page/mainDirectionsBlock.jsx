@@ -28,6 +28,7 @@ const MainDirectionsBlock = ({directionsBlockText, directions}) => {
                             xl:text-[24px] xl:leading-[31px]
                             ">{direction.title}</p>
                             <Image
+                                quality={100}
                                 className="w-[90px] h-[90px] absolute right-2.5 bottom-2.5 xl:w-[130px] xl:h-[130px] xl:right-5 xl:bottom-5"
                                 width={130} height={130} src={getImageURL(direction.icon)}
                                 alt={direction.title}></Image>

@@ -14,14 +14,19 @@ async function getContactsData() {
     return directus.request(readItems('contacts'));
 }
 
+async function getInformationMenu() {
+    return directus.request(readItems('informationMenu'));
+}
+
 export default async function ContactsPage() {
     const directions = await getDirections();
     const detail = await getContactsData();
+    const menu = await getInformationMenu();
     console.log('contacts', detail);
 
     return (
         <>
-            <BlackHeader directions={directions} contacts={detail}></BlackHeader>
+            <BlackHeader directions={directions} contacts={detail} menu={menu}></BlackHeader>
             <div className="c-container
                 pb-[80px]
                 md:pb-[120px]
@@ -145,7 +150,7 @@ export default async function ContactsPage() {
                 </div>
             </div>
             <div id="blackWrapper">
-                <Footer contacts={detail} directions={directions}></Footer>
+                <Footer contacts={detail} directions={directions} menu={menu}></Footer>
             </div>
         </>
     )

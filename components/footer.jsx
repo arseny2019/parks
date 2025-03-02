@@ -1,21 +1,53 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import {formatPhone} from "@/helpers/formatPhone";
+import {useEffect, useState} from "react";
 
-const Footer = ({directions, contacts}) => {
+const Footer = ({directions, contacts, menu}) => {
+    const [cookiesAccept, setCookiesAccept] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedValue = localStorage.getItem('cookiesAccept');
+            setCookiesAccept(storedValue === 'true'); // Convert string to boolean
+        }
+    }, []);
+
+    const updateLocalstorage = () => {
+        localStorage.setItem('cookiesAccept', 'true');
+        setCookiesAccept(true);
+    }
 
     return (
         <footer className="bg-main-black text-white pt-[100px] xl:pt-[120px]">
+            {!cookiesAccept && <div className="fixed md:flex bg-main-black justify-between max-w-[1024px]
+            bottom-0 left-0 px-8 py-5
+            xl:rounded-3xl xl:bottom-[26px] xl:translate-x-[calc(50vw_-_50%)]
+            ">
+                <p className="uppercase text-secondary-white font-[500]
+                text-[14px] leading-[150%]
+                md:text-[16px]
+                xl:text-[18px]
+                ">Мы используем Cookies, Продолжая использовать сайт,
+                    вы соглашаетесь с условиями пользовательского соглашения</p>
+                <button
+                    onClick={() => updateLocalstorage()}
+                    className="mt-6 md:mt-0 md:ml-6 bg-white font-[500] text-main-black
+                text-[14px] leading-6 px-6 py-3 rounded-[24px] h-12
+                ">Согласен</button>
+            </div>}
             <div className="c-container">
                 <Link className="inline-block xl:hidden" href="/">
-                    <Image className="w-[135px] h-[40px] md:w-[142px] md:h-[42px]" width={135} height={40} src="/logo.svg" alt="Парки России"></Image>
+                    <Image quality={100} className="w-[135px] h-[40px] md:w-[142px] md:h-[42px]" width={135} height={40}
+                           src="/logo.svg" alt="Парки России"></Image>
                 </Link>
                 <div className="lg:hidden mt-[100px] flex flex-col">
                     <Link className="duration-200 hover:text-secondary-white text-[22px] leading-[33px] font-bold"
                           href={'tel:' + formatPhone(contacts.phone)}>{contacts.phone}</Link>
                     <Link className="duration-200 hover:text-white mt-5 text-secondary-white text-[16px] leading-6"
                           href={'mailto:' + contacts.email}>{contacts.email}</Link>
-                    <div className="flex mt-8 gap-x-4">
+                    <div className="flex mt-8 gap-x-2">
                         <Link
                             className="icon-wrapper flex justify-center items-center text-white rounded-[50%] w-10 h-10"
                             href={contacts.vk}
@@ -85,7 +117,7 @@ const Footer = ({directions, contacts}) => {
                 ">
                     <div className="grid grid-cols-1 gap-y-20 md:grid-cols-2 md:gap-x-8 xl:grid-cols-4">
                         <Link className="hidden xl:inline-block" href="/">
-                            <Image className="w-[135px] h-[40px] md:w-[142px] md:h-[42px]"
+                            <Image quality={100} className="w-[135px] h-[40px] md:w-[142px] md:h-[42px]"
                                    width={135} height={40} src="/logo.svg" alt="Парки России"></Image>
                         </Link>
                         <div className="pr-5">
@@ -107,24 +139,13 @@ const Footer = ({directions, contacts}) => {
                             <p className="font-[500] text-[12px] leading-[18px] md:text-[13px] md:leading-[19px]
                             text-placeholder-white uppercase">Информация</p>
                             <div className="mt-6 flex flex-col gap-y-5 items-start">
-                                <Link
+                                {menu?.elements.map((elem) => <Link
+                                    key={elem.label + elem.link + 'footer'}
                                     className="
                             text-[14px] leading-[21px]
                             md:text-[16px] md:leading-[24px]
                             text-secondary-white hover:text-white duration-200"
-                                    href={'/news/'}>Новости</Link>
-                                <Link
-                                    className="
-                            text-[14px] leading-[21px]
-                            md:text-[16px] md:leading-[24px]
-                            text-secondary-white hover:text-white duration-200"
-                                    href={'/partners/'}>Партнеры</Link>
-                                <Link
-                                    className="
-                            text-[14px] leading-[21px]
-                            md:text-[16px] md:leading-[24px]
-                            text-secondary-white hover:text-white duration-200"
-                                    href={'/contacts/'}>Контакты</Link>
+                                    href={elem.link}>{elem.label}</Link>)}
                             </div>
                         </div>
                         <div className="hidden xl:flex xl:flex-col">
@@ -134,7 +155,7 @@ const Footer = ({directions, contacts}) => {
                             <Link
                                 className="duration-200 hover:text-white mt-5 text-secondary-white text-[16px] leading-6"
                                 href={'mailto:' + contacts.email}>{contacts.email}</Link>
-                            <div className="flex mt-8 gap-x-4">
+                            <div className="flex mt-8 gap-x-2">
                                 <Link
                                     className="icon-wrapper flex justify-center items-center text-white rounded-[50%] w-10 h-10"
                                     href={contacts.vk}
@@ -204,7 +225,7 @@ const Footer = ({directions, contacts}) => {
                               href={'tel:' + formatPhone(contacts.phone)}>{contacts.phone}</Link>
                         <Link className="duration-200 hover:text-white mt-5 text-secondary-white text-[16px] leading-6"
                               href={'mailto:' + contacts.email}>{contacts.email}</Link>
-                        <div className="flex mt-8 gap-x-4">
+                        <div className="flex mt-8 gap-x-2">
                             <Link
                                 className="icon-wrapper flex justify-center items-center text-white rounded-[50%] w-10 h-10"
                                 href={contacts.vk}

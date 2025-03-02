@@ -25,7 +25,7 @@ const MainNewsBlock = ({news}) => {
                     md:min-w-[315px]
                     lg:min-w-[auto]
                 ">
-                                <Image width={480} height={0} className="duration-300 news-item-image object-fit w-full aspect-[1.65] rounded-3xl"
+                                <Image quality={100} width={480} height={0} className="duration-300 news-item-image object-fit w-full aspect-[1.65] rounded-3xl"
                                        src={getImageURL(item.thumbnail)} alt={item.title}></Image>
                                 <p className="font-inter text-secondary-black mt-4
                     text-[16px] leading-6

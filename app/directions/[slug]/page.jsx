@@ -34,6 +34,10 @@ async function getTechnologies(ids) {
     }));
 }
 
+async function getInformationMenu() {
+    return directus.request(readItems('informationMenu'));
+}
+
 export async function generateMetadata({params, searchParams}, parent) {
     const slug = (await params).slug
 
@@ -44,7 +48,7 @@ export async function generateMetadata({params, searchParams}, parent) {
 
     return {
         title: item.title,
-        description: item.seo || item.title,
+        description: item.metaDescription || item.title,
     }
 }
 
@@ -57,9 +61,10 @@ export default async function DirectionDetailPage({params}) {
     if (detail.technologies && detail.technologies.length > 0) {
         technologies = await getTechnologies(detail.technologies.map(tech => tech.technologies_id));
     }
+    const menu = await getInformationMenu();
     return (
         <>
-            <Header contacts={contacts} directions={directions} withAnimation={true}></Header>
+            <Header contacts={contacts} directions={directions} withAnimation={true} menu={menu}></Header>
             <div className="relative h-[600px] xl:h-[750px]">
                 <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient">
                     <div className="h-full c-container flex flex-col justify-end">
@@ -72,7 +77,7 @@ export default async function DirectionDetailPage({params}) {
                         ">{detail.title}</h1>
                     </div>
                 </div>
-                <Image width={1320} height={0} className="w-full h-full object-cover"
+                <Image quality={100} width={1320} height={0} className="w-full h-full object-cover"
                        src={getImageURL(detail.image)}
                        alt={detail.title}></Image>
             </div>
@@ -120,12 +125,12 @@ export default async function DirectionDetailPage({params}) {
                                 ">
                                         {feature.description}
                                     </p>}
-                                    {feature.link && <Link
+                                    {feature.link && <div><Link
                                         className="font-roboto font-[600] text-main-green
                                         text-[16px] leading-6
                                         md:text-[18px] md:leading-[27px] hover:opacity-80
                                     "
-                                        href={feature.link}>Подробнее</Link>}
+                                        href={feature.link}>Подробнее</Link></div>}
                                 </div>
                             ))}
                         </div>
@@ -156,12 +161,12 @@ export default async function DirectionDetailPage({params}) {
                                 ">
                                         {feature.description}
                                     </p>}
-                                    {feature.link && <Link
+                                    {feature.link && <div><Link
                                         className="font-roboto font-[600] text-main-green
                                         text-[16px] leading-6
                                         md:text-[18px] md:leading-[27px] hover:opacity-80
                                     "
-                                        href={feature.link}>Подробнее</Link>}
+                                        href={feature.link}>Подробнее</Link></div>}
                                 </div>
                             ))}
                         </div>
@@ -169,6 +174,7 @@ export default async function DirectionDetailPage({params}) {
                     {detail.gallery && detail.gallery.length > 0 &&
                         <div className="grid grid-cols-1 gap-y-8 md:gap-y-10">
                             {detail.gallery.map(item => <Image
+                                quality={100}
                                 key={item.directus_files_id}
                                 className="w-full aspect-[2] rounded-3xl object-cover"
                                 width={900} height={0} src={getImageURL(item.directus_files_id)}
@@ -180,7 +186,7 @@ export default async function DirectionDetailPage({params}) {
                 </div>
             </div>
             <div id="blackWrapper">
-                <Footer contacts={contacts} directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions} menu={menu}></Footer>
             </div>
         </>
     )

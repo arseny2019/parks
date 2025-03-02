@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import Image from "next/image";
 import {formatPhone} from "@/helpers/formatPhone";
 
-const Navigation = ({directions, active, closeCallback, contacts}) => {
+const Navigation = ({directions, active, closeCallback, contacts, menu}) => {
     const [menuClass, setMenuClass] = useState('opacity-0');
 
     useEffect(() => {
@@ -113,24 +113,13 @@ const Navigation = ({directions, active, closeCallback, contacts}) => {
                         <p className="font-[500] text-[13px] leading-[19px]
                             text-placeholder-white uppercase">Информация</p>
                         <div className="mt-6 flex flex-col gap-y-5 items-start">
-                            <Link
-                                className="text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
-                                md:text-[22px] md:leading-[33px]
-                                2xl:text-[24px] 2xl:leading-[36px]
-                                text-secondary-white hover:text-white duration-200"
-                                href={'/news/'}>Новости</Link>
-                            <Link
-                                className="text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
-                                md:text-[22px] md:leading-[33px]
-                                2xl:text-[24px] 2xl:leading-[36px]
-                                text-secondary-white hover:text-white duration-200"
-                                href={'/partners/'}>Партнеры</Link>
-                            <Link
-                                className="text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
-                                md:text-[22px] md:leading-[33px]
-                                2xl:text-[24px] 2xl:leading-[36px]
-                                text-secondary-white hover:text-white duration-200"
-                                href={'/contacts/'}>Контакты</Link>
+                            {menu?.elements.map((elem) => <Link
+                                key={elem.label + elem.link + 'footer'}
+                                className="
+                            text-[14px] leading-[21px]
+                            md:text-[16px] md:leading-[24px]
+                            text-secondary-white hover:text-white duration-200"
+                                href={elem.link}>{elem.label}</Link>)}
                         </div>
                     </div>
                 </div>
@@ -141,7 +130,7 @@ const Navigation = ({directions, active, closeCallback, contacts}) => {
                         href={'tel:' + formatPhone(contacts.phone)}>{contacts.phone}</Link>
                     <Link className="duration-200 hover:text-white mt-5 text-secondary-white text-[18px] leading-[27px]"
                           href={'mailto:' + contacts.email}>{contacts.email}</Link>
-                    <div className="flex mt-8 gap-x-4 text-white">
+                    <div className="flex mt-8 gap-x-2 text-white">
                         <Link
                             className="icon-wrapper flex justify-center items-center text-white rounded-[50%] w-10 h-10"
                             href={contacts.vk}

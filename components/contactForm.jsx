@@ -3,12 +3,16 @@ import {useForm} from "react-hook-form";
 import directus from "@/lib/directus";
 import {createItem} from "@directus/sdk";
 import {publicUserToken} from "@/helpers/directus";
+import {useEffect, useState} from "react";
 
 export default function ContactForm() {
+    const [showSuccessWindow, setShowSuccessWindow] = useState(false);
+
     const {
         register,
         handleSubmit,
         setValue,
+        reset,
         formState: {errors, isValid, isSubmitting, isDirty},
     } = useForm({
         mode: 'onChange'
@@ -31,13 +35,39 @@ export default function ContactForm() {
                     question: e.question
                 }, {access_token: publicUserToken})
             );
+            setShowSuccessWindow(true);
         } catch (error) {
             console.log(error);
         }
     }
 
+    useEffect(() => {
+        if (showSuccessWindow) {
+            reset();
+        }
+    }, [showSuccessWindow]);
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="relative">
+            {showSuccessWindow && <div className="h-[calc(100%_+_24px)] px-6 py-8 absolute left-0 top-0 z-10 rounded-3xl bg-main-green text-white
+            md:pl-8 md:pr-16 md:py-10
+            lg:py-12
+            xl:py-10
+            ">
+                <h5 className="text-[28px] leading-[34px] font-roboto-condensed uppercase
+                md:text-[36px] md:leading-[43px]
+                xl:text-[40px] xl:leading-[48px]
+                ">Форма успешно<br/>отправлена</h5>
+                <p className="mt-6 text-secondary-white
+                text-[16px] leading-[19px]
+                md:text-[18px] md:leading-[22px]
+                ">Спасибо за обращение! Мы свяжемся с вами в ближайшее время!</p>
+                <button onClick={() => setShowSuccessWindow(false)} className="font-[500] leading-[150%] bg-white text-main-black
+                px-6 py-4 text-[16px] mt-8 rounded-[28px]
+                md:py-5 md:mt-10 md:rounded-[32px]
+                ">Отлично!
+                </button>
+            </div>}
             <div className="grid grid-cols-1
                             gap-y-4
                             md:gap-y-6">
@@ -74,7 +104,7 @@ export default function ContactForm() {
                     {...register('question')}
                     maxLength={512}
                     className="resize-none h-[120px] block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] xl:text-[18px] text-main-black"
-                    placeholder="Расскажите о вашем проекте" name="question" rows="4"></textarea>
+                    placeholder="Расскажите о вашем запросе" name="question" rows="4"></textarea>
             </div>
 
             <div className="mt-8 md:mt-10">

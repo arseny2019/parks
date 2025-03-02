@@ -30,6 +30,23 @@ async function getNextNews(date) {
     }));
 }
 
+async function getInformationMenu() {
+    return directus.request(readItems('informationMenu'));
+}
+
+export async function generateMetadata({params, searchParams}, parent) {
+    const slug = (await params).slug
+
+    const [item] = await directus.request(readItems('news', {
+        filter: {slug},
+        fields: ['*']
+    }));
+
+    return {
+        title: item.title,
+        description: item.metaDescription || item.title,
+    }
+}
 
 const NewsDetailPage = async ({params}) => {
     const pars = await params;
@@ -37,15 +54,16 @@ const NewsDetailPage = async ({params}) => {
     const contacts = await getContacts();
     const [detail] = await getNewsDetail(pars.slug);
     const res = await getNextNews(detail.date);
+    const menu = await getInformationMenu();
 
     return(
         <>
-            <BlackHeader contacts={contacts} directions={directions}></BlackHeader>
+            <BlackHeader contacts={contacts} directions={directions} menu={menu}></BlackHeader>
             <div className="c-container">
                 <NewsDetail detail={detail} previousNews={res[0] || false}/>
             </div>
             <div id="blackWrapper">
-                <Footer contacts={contacts} directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions} menu={menu}></Footer>
             </div>
         </>
     )

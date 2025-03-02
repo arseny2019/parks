@@ -13,6 +13,7 @@ async function getDirections() {
 async function getPartners() {
     return directus.request(readItems('partners', {fields: ['*']}));
 }
+
 async function getPartnerCategories() {
     return directus.request(readItems('partnerCategories', {fields: ['*']}));
 }
@@ -21,24 +22,34 @@ async function getContacts() {
     return directus.request(readItems('contacts'));
 }
 
+async function getInformationMenu() {
+    return directus.request(readItems('informationMenu'));
+}
+
+export async function generateMetadata() {
+
+    const item = await directus.request(readItems('partnersArchivePage'));
+
+    return {
+        title: item.metaTitle,
+        description: item.metaDescription || item.metaTitle,
+    }
+}
+
 export default async function PartnersPage() {
     const directions = await getDirections();
     const contacts = await getContacts();
     const partners = await getPartners();
     const categories = await getPartnerCategories();
+    const menu = await getInformationMenu();
     const partnersMap = {};
     categories.forEach(category => {
         partnersMap[category.name] = partners
             .filter(partner => partner.category.key === category.id);
     });
-    const businessPartners = partners
-        .filter(partner => partner.type === 'business');
-    const governmentPartners = partners
-        .filter(partner => partner.type === 'government');
-
     return (
         <>
-            <BlackHeader contacts={contacts} directions={directions}></BlackHeader>
+            <BlackHeader contacts={contacts} directions={directions} menu={menu}></BlackHeader>
             <div className="c-container
                 pb-[80px]
                 md:pb-[120px]
@@ -78,6 +89,7 @@ export default async function PartnersPage() {
                                     <div key={partner.title + 'government'}>
                                         {!partner.link && <div className="bg-main-gray py-4 rounded-[16px] md:rounded-3xl md:p-4">
                                             <Image
+                                                quality={100}
                                                 className="object-contain aspect-[1.8] w-full"
                                                 width={480} height={0} src={getImageURL(partner.image)}
                                                 alt={partner.title}></Image>
@@ -85,6 +97,7 @@ export default async function PartnersPage() {
                                         {partner.link && <Link href={partner.link} target="_blank"
                                                                className="block bg-main-gray duration-200 hover:bg-secondary-gray py-4 rounded-[16px] md:rounded-3xl md:p-4">
                                             <Image
+                                                quality={100}
                                                 className="object-contain aspect-[1.8] w-full"
                                                 width={480} height={0} src={getImageURL(partner.image)}
                                                 alt={partner.title}></Image>
@@ -96,7 +109,7 @@ export default async function PartnersPage() {
                 </div>}
             </div>
             <div id="blackWrapper">
-                <Footer contacts={contacts} directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions} menu={menu}></Footer>
             </div>
         </>
     )

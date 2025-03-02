@@ -4,7 +4,7 @@ import {useEffect, useRef, useState} from "react";
 import Navigation from "@/components/navigation";
 import Link from "next/link";
 
-const BlackHeader = ({directions, contacts}) => {
+const BlackHeader = ({directions, contacts, menu}) => {
     const [burgerActive, setBurgerActive] = useState(false);
     const containerRef = useRef(null);
     const headerRef = useRef(null);
@@ -81,7 +81,7 @@ const BlackHeader = ({directions, contacts}) => {
                     className="duration-300 w-full h-[88px] xl:h-[90px] fixed top-0 left-0 z-10 backdrop-blur-[50px] bg-[rgba(255,_255,_255,_0.6)]">
                 <div ref={blackCircleRef} className="absolute right-0 top-0 scale-0 z-10 origin-center
                 translate-x-[50%] translate-y-[-50%] duration-500 bg-main-black w-[max(400vh,_400vw)] h-[max(400vh,_400vw)] rounded-[50%]"></div>
-                <Navigation closeCallback={() => setBurgerActive(false)} active={activeMenu}
+                <Navigation menu={menu} closeCallback={() => setBurgerActive(false)} active={activeMenu}
                             directions={directions} contacts={contacts}></Navigation>
                 <div className="absolute left-0 top-0 w-full">
                     <div ref={headerInnerRef} className="mx-auto flex justify-between items-center duration-200

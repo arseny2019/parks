@@ -23,14 +23,29 @@ async function getContacts() {
     return directus.request(readItems('contacts'));
 }
 
+async function getInformationMenu() {
+    return directus.request(readItems('informationMenu'));
+}
+
+export async function generateMetadata() {
+
+    const item = await directus.request(readItems('projectsPage'));
+
+    return {
+        title: item.metaTitle,
+        description: item.metaDescription || item.metaTitle,
+    }
+}
+
 export default async function ProjectsArchivePage() {
     const projects = await getProjects();
     const directions = await getDirections();
     const contacts = await getContacts();
     const detail = await getArchivePageData();
+    const menu = await getInformationMenu();
     return (
         <>
-            <Header contacts={contacts} directions={directions} withAnimation={true}></Header>
+            <Header contacts={contacts} directions={directions} withAnimation={true} menu={menu}></Header>
             <div className="relative h-[600px] xl:h-[750px]">
                 <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient">
                     <div className="h-full c-container flex flex-col justify-end">
@@ -43,7 +58,7 @@ export default async function ProjectsArchivePage() {
                         ">{detail.title}</h1>
                     </div>
                 </div>
-                <Image width={1320} height={0} className="w-full h-full object-cover"
+                <Image quality={100} width={1320} height={0} className="w-full h-full object-cover"
                        src={getImageURL(detail.image)}
                        alt={detail.title}></Image>
             </div>
@@ -59,7 +74,7 @@ export default async function ProjectsArchivePage() {
                     xl:gap-y-[120px]
                     2xl:gap-y-[150px]
                 ">
-                    {detail.mainText && <h2 className="font-[400] font-roboto
+                    {detail.mainText && <h2 className="font-[400] font-roboto mb-6
                         text-[22px] leading-[33px]
                         sm:text-[24px] sm:leading-[36px]
                         lg:text-[36px] lg:leading-[54px]
@@ -74,7 +89,7 @@ export default async function ProjectsArchivePage() {
                 </div>
             </div>
             <div id="blackWrapper">
-                <Footer contacts={contacts} directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions} menu={menu}></Footer>
             </div>
         </>
     )

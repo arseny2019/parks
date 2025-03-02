@@ -2,6 +2,10 @@
     @apply pl-[26px] md:pl-8 relative
 }
 
+.custom-list-item.custom-list-item_modal {
+    @apply pl-[26px] md:pl-[26px] relative
+}
+
 .custom-list-item::before {
     content: '';
     position: absolute;

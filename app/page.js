@@ -26,8 +26,23 @@ async function getMainPageData() {
     return directus.request(readItems('mainPage'));
 }
 
+async function getInformationMenu() {
+    return directus.request(readItems('informationMenu'));
+}
+
 async function getContacts() {
     return directus.request(readItems('contacts'));
+}
+
+export async function generateMetadata() {
+
+    const detail = await directus.request(readItems('mainPage'));
+    console.log('detail', detail);
+
+    return {
+        title: detail.metaTitle,
+        description: detail.metaDescription,
+    }
 }
 
 export default async function Home() {
@@ -36,10 +51,10 @@ export default async function Home() {
     const directions = await getDirections();
     const data = await getMainPageData();
     const news = await getNews();
-    console.log('news', news);
+    const menu = await getInformationMenu();
     return (
         <>
-            <Header contacts={contacts} directions={directions} withAnimation={true}></Header>
+            <Header contacts={contacts} directions={directions} withAnimation={true} menu={menu}></Header>
             <div className="md:fixed md:z-[-1] md:left-0 md:top-0 xl:min-h-[900px] h-[100vh] w-full">
                 <MainTopBlock
                     topBlockImage={data.topBlockImage}
@@ -58,7 +73,7 @@ export default async function Home() {
                             <h3 className="uppercase
                     text-[32px] leading-[42px]
                     md:text-[36px] md:leading-[54px]
-                    ">Проекты</h3>
+                    ">{data.projectsTitle}</h3>
                     <MainProjectsBlock projects={projects}></MainProjectsBlock>
                 </div>
                 <div className="c-container">
@@ -74,7 +89,7 @@ export default async function Home() {
             </div>
             <div id="blackWrapper">
                 <MainMapBlock mapBlockText={data.mapBlockText} mapBlockLink={data.mapBlockLink}></MainMapBlock>
-                <Footer contacts={contacts} directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions} menu={menu}></Footer>
             </div>
         </>
     );

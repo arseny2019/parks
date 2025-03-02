@@ -6,7 +6,7 @@ const MainProjectsBlock = ({projects}) => {
 
     return (
 
-        <div className="mt-6 grid grid-cols-1 gap-y-4
+        <div className="grid grid-cols-1 gap-y-4
             md:gap-y-6
             lg:gap-y-8
             ">
@@ -20,7 +20,7 @@ const MainProjectsBlock = ({projects}) => {
                     2xl:h-[400px]
                     "
                 key={project.title + index}>
-                <Image width={1360} height={720} className="object-cover h-full w-full absolute left-0 top-0"
+                <Image quality={100} width={1360} height={720} className="object-cover h-full w-full absolute left-0 top-0"
                        src={getImageURL(project.image)} alt={project.title}></Image>
                 <div className="projects-gradient h-full w-full absolute top-0 left-0"></div>
                 <div className="absolute left-0 top-0 w-full h-full

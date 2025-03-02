@@ -27,18 +27,33 @@ async function getContacts() {
     return directus.request(readItems('contacts'));
 }
 
+async function getInformationMenu() {
+    return directus.request(readItems('informationMenu'));
+}
+
+export async function generateMetadata() {
+
+    const item = await directus.request(readItems('newsArchivePage'));
+
+    return {
+        title: item.metaTitle,
+        description: item.metaDescription || item.metaTitle,
+    }
+}
+
 export default async function NewsArchivePage() {
     const directions = await getDirections();
     const contacts = await getContacts();
     const limit = 9;
     const page = 0;
     const [aggregation] = await getNewsCount();
+    const menu = await getInformationMenu();
     console.log('aggregation', aggregation.count);
     const news = await getNews(page, limit);
     console.log('archive news', news);
     return (
         <>
-            <BlackHeader contacts={contacts} directions={directions}></BlackHeader>
+            <BlackHeader contacts={contacts} directions={directions} menu={menu}></BlackHeader>
             <div className="c-container
                 pb-[80px]
                 md:pb-[120px]
@@ -57,7 +72,7 @@ export default async function NewsArchivePage() {
                 <NewsArchiveGrid page={page} limit={limit} news={news} totalCount={aggregation.count}></NewsArchiveGrid>
             </div>
             <div id="blackWrapper">
-                <Footer contacts={contacts} directions={directions}></Footer>
+                <Footer contacts={contacts} directions={directions} menu={menu}></Footer>
             </div>
         </>
     )
