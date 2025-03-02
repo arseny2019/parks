@@ -21,7 +21,7 @@ const Footer = ({directions, contacts, menu}) => {
 
     return (
         <footer className="bg-main-black text-white pt-[100px] xl:pt-[120px]">
-            {!cookiesAccept && <div className="fixed md:flex bg-main-black justify-between max-w-[1024px]
+            {!cookiesAccept && <div className="fixed z-[9999] md:flex bg-main-black justify-between max-w-[1024px]
             bottom-0 left-0 px-8 py-5
             xl:rounded-3xl xl:bottom-[26px] xl:translate-x-[calc(50vw_-_50%)]
             ">

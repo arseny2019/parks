@@ -22,10 +22,14 @@
 }
 
 .map-background {
-    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 1)), url("../public/map.png");
+    background-image: url("../public/map.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.upper-gradient {
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0.2), rgba(10, 10, 10, 1))
 }
 
 .burger {
@@ -37,7 +41,7 @@
     transition: 200ms;
 }
 
-.burger::before, .burger::after, .burger-line::before, .burger-line::after  {
+.burger::before, .burger::after, .burger-line::before, .burger-line::after {
     content: '';
     width: 23px;
     height: 2px;
