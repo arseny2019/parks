@@ -24,7 +24,7 @@ const MainMapBlock = ({mapBlockText, mapBlockLink}) => {
                         ">{mapBlockText}</p>
                         <Link
                             className="rounded-[28px] bg-white text-main-black mt-8 px-6 py-4 text-[16px] leading-6 font-[500]"
-                            target="_blank" href="/">Перейти на сайт</Link>
+                            target="_blank" href={mapBlockLink}>Перейти на сайт</Link>
                     </div>
                 </div>
             </div>
