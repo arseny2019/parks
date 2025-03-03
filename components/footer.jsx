@@ -5,7 +5,7 @@ import {formatPhone} from "@/helpers/formatPhone";
 import {useEffect, useState} from "react";
 
 const Footer = ({directions, contacts, menu}) => {
-    const [cookiesAccept, setCookiesAccept] = useState(false);
+    const [cookiesAccept, setCookiesAccept] = useState(true);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -35,7 +35,8 @@ const Footer = ({directions, contacts, menu}) => {
                     onClick={() => updateLocalstorage()}
                     className="mt-6 md:mt-0 md:ml-6 bg-white font-[500] text-main-black
                 text-[14px] leading-6 px-6 py-3 rounded-[24px] h-12
-                ">Согласен</button>
+                ">Согласен
+                </button>
             </div>}
             <div className="c-container">
                 <Link className="inline-block xl:hidden" href="/">
