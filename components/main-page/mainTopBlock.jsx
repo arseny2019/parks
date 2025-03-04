@@ -79,12 +79,11 @@ const MainTopBlock = ({topBlockText, topBlockVideo, topBlockVideoMP4, topBlockVi
         xl:h-[100vh]
     ">
         <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient"></div>
-        {videoPreviewImageUrl && <Image quality={100} alt="Красивая картинка" width={1360} height={0} className="absolute top-0 left-0 w-full h-full object-cover" src={videoPreviewImageUrl}/>}
         {video && <video loop={true} ref={videoRef} muted={true} width={1360} height={0}
                          className="absolute top-0 left-0 w-full h-full object-cover" playsInline={true} autoPlay={true}
                          poster={videoPreviewImageUrl}>
-            <source src={video} type="video/webm"/>
-            <source src={videoMP4} type="video/mp4"/>
+            <source src={video}/>
+            <source src={videoMP4}/>
         </video>}
         <div className="uppercase absolute top-0 left-0 z-[2] w-full h-full flex flex-col-reverse
         2xl:pb-[120px] 2xl:max-w-[1680px] 2xl:left-[max(0px,_calc(50%_-_840px))]
