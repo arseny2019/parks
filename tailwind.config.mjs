@@ -41,6 +41,7 @@ export default {
                 'placeholder-white': 'rgba(255, 255, 255, 0.4)',
                 'main-green': 'rgba(57, 180, 98, 1)',
                 'secondary-green': 'rgb(49,155,84)',
+                'error-red': 'rgb(210, 26, 10)',
             },
         },
     },

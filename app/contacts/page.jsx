@@ -18,6 +18,16 @@ async function getInformationMenu() {
     return directus.request(readItems('informationMenu'));
 }
 
+export async function generateMetadata() {
+
+    const item = await directus.request(readItems('contacts'));
+
+    return {
+        title: item.metaTitle,
+        description: item.metaDescription || item.metaTitle,
+    }
+}
+
 export default async function ContactsPage() {
     const directions = await getDirections();
     const detail = await getContactsData();
@@ -84,7 +94,7 @@ export default async function ContactsPage() {
                         </div>
                         <div className="flex gap-x-4">
                             <Link
-                                className="icon-wrapper flex justify-center items-center text-white rounded-[50%] bg-[rgba(10,_10,_10,_1)] w-10 h-10"
+                                className="icon-wrapper flex justify-center items-center text-white rounded-[50%] bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
                                 href={detail.vk}
                                 target="_blank">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -95,7 +105,7 @@ export default async function ContactsPage() {
                                         fill="currentColor"/>
                                 </svg>
                             </Link>
-                            <Link className="icon-wrapper flex justify-center items-center rounded-[50%] text-white bg-[rgba(10,_10,_10,_1)] w-10 h-10"
+                            <Link className="icon-wrapper flex justify-center items-center rounded-[50%] text-white bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
                                   href={detail.telegram}
                                   target="_blank">
                                 <svg width="24" height="24" className="duration-200"
@@ -107,7 +117,7 @@ export default async function ContactsPage() {
                                         fill="currentColor"/>
                                 </svg>
                             </Link>
-                            <Link className="icon-wrapper flex justify-center items-center rounded-[50%] text-white bg-[rgba(10,_10,_10,_1)] w-10 h-10"
+                            <Link className="icon-wrapper flex justify-center items-center rounded-[50%] text-white bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
                                   href={detail.vc_ru}
                                   target="_blank">
                                 <svg width="24" height="25" className="duration-200" viewBox="0 0 24 25" fill="none"
@@ -126,7 +136,7 @@ export default async function ContactsPage() {
                                 </svg>
                             </Link>
                             <Link
-                                className="icon-wrapper flex justify-center items-center rounded-[50%] bg-[rgba(10,_10,_10,_1)] w-10 h-10"
+                                className="icon-wrapper flex justify-center items-center rounded-[50%] bg-[rgba(10,_10,_10,_1)] w-14 h-14 xl:w-16 xl:h-16"
                                 href={detail.dzen}
                                 target="_blank">
                                 <svg width="24" height="25" className="duration-200" viewBox="0 0 24 25" fill="none"

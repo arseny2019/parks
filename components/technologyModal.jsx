@@ -43,9 +43,8 @@ const TechnologyModal = ({technology}) => {
                         <div className="grid mt-10 grid-cols-1 gap-y-6">
                             {technology.features.map(feature => (
                                 <div key={feature.title || feature.description} className="custom-list-item custom-list-item_modal flex flex-col
-                                gap-y-[6px]
-                                sm:gap-y-2
-                                md:gap-y-3 md:pr-8
+                                gap-y-2
+                                md:pr-8
                             ">
                                     {feature.title && <p className="font-[500]
                                     text-[18px] leading-[27px]

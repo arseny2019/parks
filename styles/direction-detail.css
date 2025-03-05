@@ -23,4 +23,10 @@
         height: 12px;
         top: 10px;
     }
+
+    .custom-list-item::before {
+        width: 10px;
+        height: 10px;
+        top: 8px;
+    }
 }

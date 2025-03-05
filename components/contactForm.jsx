@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 
 export default function ContactForm() {
     const [showSuccessWindow, setShowSuccessWindow] = useState(false);
+    const [showErrorWindow, setShowErrorWindow] = useState(false);
 
     const {
         register,
@@ -38,6 +39,7 @@ export default function ContactForm() {
             setShowSuccessWindow(true);
         } catch (error) {
             console.log(error);
+            setShowErrorWindow(true);
         }
     }
 
@@ -66,6 +68,21 @@ export default function ContactForm() {
                 px-6 py-4 text-[16px] mt-8 rounded-[28px]
                 md:py-5 md:mt-10 md:rounded-[32px]
                 ">Отлично!
+                </button>
+            </div>}
+            {showErrorWindow && <div className="h-[calc(100%_+_24px)] px-6 py-8 absolute left-0 top-0 z-10 rounded-3xl bg-error-red text-white
+            md:pl-8 md:pr-16 md:py-10
+            lg:py-12
+            xl:py-10
+            ">
+                <h5 className="text-[28px] leading-[34px] font-roboto-condensed uppercase
+                md:text-[36px] md:leading-[43px]
+                xl:text-[40px] xl:leading-[48px]
+                ">Возникла Проблема при отправке формы</h5>
+                <button onClick={() => setShowErrorWindow(false)} className="font-[500] leading-[150%] bg-white text-main-black
+                px-6 py-4 text-[16px] mt-8 rounded-[28px]
+                md:py-5 md:mt-10 md:rounded-[32px]
+                ">Попробовать еще раз
                 </button>
             </div>}
             <div className="grid grid-cols-1
