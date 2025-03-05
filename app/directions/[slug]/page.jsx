@@ -45,7 +45,7 @@ export async function generateMetadata({params, searchParams}, parent) {
     const [item] = await directus.request(readItems('directions', {
         filter: {slug},
         fields: ['*']
-    }));
+    })).catch(() => notFound());
 
     return {
         title: item.title,
@@ -58,6 +58,9 @@ export default async function DirectionDetailPage({params}) {
     const contacts = await getContacts();
     const {slug} = await params;
     const [detail] = await getDirectionDetail(slug);
+    if (!detail) {
+        notFound();
+    }
     let technologies;
     if (detail.technologies && detail.technologies.length > 0) {
         technologies = await getTechnologies(detail.technologies.map(tech => tech.technologies_id));

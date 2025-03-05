@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import Link from "next/link";
 import {formatPhone} from "@/helpers/formatPhone";
 import ContactForm from "@/components/contactForm";
+import {notFound} from "next/navigation";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -20,7 +21,7 @@ async function getInformationMenu() {
 
 export async function generateMetadata() {
 
-    const item = await directus.request(readItems('contacts'));
+    const item = await directus.request(readItems('contacts')).catch(() => notFound());
 
     return {
         title: item.metaTitle,

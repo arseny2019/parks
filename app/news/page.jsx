@@ -3,6 +3,7 @@ import {aggregate, readItems} from "@directus/sdk";
 import Footer from "@/components/footer";
 import BlackHeader from "@/components/blackHeader";
 import NewsArchiveGrid from "@/components/news/newsArchiveGrid";
+import {notFound} from "next/navigation";
 
 async function getNews(page, limit) {
     return directus.request(readItems('news', {
@@ -33,7 +34,7 @@ async function getInformationMenu() {
 
 export async function generateMetadata() {
 
-    const item = await directus.request(readItems('newsArchivePage'));
+    const item = await directus.request(readItems('newsArchivePage')).catch(() => notFound());
 
     return {
         title: item.metaTitle,

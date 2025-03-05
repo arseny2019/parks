@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
 import Link from "next/link";
+import {notFound} from "next/navigation";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -28,7 +29,7 @@ async function getInformationMenu() {
 
 export async function generateMetadata() {
 
-    const item = await directus.request(readItems('partnersArchivePage'));
+    const item = await directus.request(readItems('partnersArchivePage')).catch(() => notFound());
 
     return {
         title: item.metaTitle,

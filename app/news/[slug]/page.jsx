@@ -41,11 +41,11 @@ export async function generateMetadata({params, searchParams}, parent) {
     const [item] = await directus.request(readItems('news', {
         filter: {slug},
         fields: ['*']
-    }));
+    })).catch(() => notFound());
 
     return {
-        title: item.title,
-        description: item.metaDescription || item.title,
+        title: item.title || '',
+        description: item.metaDescription || item.title || '',
     }
 }
 

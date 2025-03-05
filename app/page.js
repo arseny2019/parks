@@ -9,6 +9,7 @@ import MainNewsBlock from "@/components/main-page/mainNewsBlock";
 import Footer from "@/components/footer";
 import MainMapBlock from "@/components/main-page/mainMapBlock";
 import Link from "next/link";
+import {notFound} from "next/navigation";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -36,7 +37,7 @@ async function getContacts() {
 
 export async function generateMetadata() {
 
-    const detail = await directus.request(readItems('mainPage'));
+    const detail = await directus.request(readItems('mainPage')).catch(() => notFound());
     console.log('detail', detail);
 
     return {
