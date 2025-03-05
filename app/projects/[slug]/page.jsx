@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import TechnologyModal from "@/components/technologyModal";
 import TechnologyGrid from "@/components/directions/technologyGrid";
 import Link from "next/link";
+import {notFound} from "next/navigation";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -16,7 +17,7 @@ async function getProjectDetail(slug) {
     return directus.request(readItems('projects', {
         filter: {slug},
         fields: ['*', 'gallery.*']
-    }));
+    })).catch(() => notFound());
 }
 
 async function getContacts() {
@@ -34,7 +35,7 @@ export async function generateMetadata({params, searchParams}, parent) {
     const [item] = await directus.request(readItems('projects', {
         filter: {slug},
         fields: ['*']
-    }));
+    })).catch(() => notFound());
 
     return {
         title: item.title,
@@ -47,6 +48,9 @@ export default async function ProjectDetailPage({params}) {
     const contacts = await getContacts();
     const {slug} = await params;
     const [detail] = await getProjectDetail(slug);
+    if (!detail) {
+        notFound();
+    }
     const menu = await getInformationMenu();
 
     return (
@@ -141,7 +145,7 @@ export default async function ProjectDetailPage({params}) {
                                 width={900} height={0} src={getImageURL(item.directus_files_id)}
                                 alt="Изображение из галереи"/>)}
                         </div>}
-                    
+
                     <Link href="/contacts" className="block text-center w-full font-[500] bg-[rgba(10,_10,_10,_0.08)] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-[rgba(10,_10,_10,_0.8)]
                        py-[30px] text-[20px] leading-[150%] rounded-[45px]
                        lg:py-[40px] lg:text-[22px] lg:rounded-[57px]

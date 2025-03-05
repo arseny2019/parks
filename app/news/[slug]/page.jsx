@@ -3,6 +3,7 @@ import {readItems} from "@directus/sdk";
 import BlackHeader from "@/components/blackHeader";
 import Footer from "@/components/footer";
 import NewsDetail from "@/components/news/newsDetail";
+import {notFound} from "next/navigation";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -16,18 +17,18 @@ async function getNewsDetail(slug) {
     return directus.request(readItems('news', {
         filter: {slug},
         fields: ['*']
-    }));
+    })).catch(() => notFound());
 }
 
 async function getNextNews(date) {
     return directus.request(readItems('news', {
         filter: {
-            date: { "_lt": date }
+            date: {"_lt": date}
         },
         sort: ['-date'],
         limit: 1,
         fields: ['*']
-    }));
+    })).catch(() => notFound());
 }
 
 async function getInformationMenu() {
@@ -53,10 +54,14 @@ const NewsDetailPage = async ({params}) => {
     const directions = await getDirections();
     const contacts = await getContacts();
     const [detail] = await getNewsDetail(pars.slug);
+    if (!detail) {
+        notFound();
+    }
     const res = await getNextNews(detail.date);
     const menu = await getInformationMenu();
 
-    return(
+
+    return (
         <>
             <BlackHeader contacts={contacts} directions={directions} menu={menu}></BlackHeader>
             <div className="c-container">

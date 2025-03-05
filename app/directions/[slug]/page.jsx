@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import TechnologyGrid from "@/components/directions/technologyGrid";
 import Link from "next/link";
+import {notFound} from "next/navigation";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -19,7 +20,7 @@ async function getDirectionDetail(slug) {
     return directus.request(readItems('directions', {
         filter: {slug},
         fields: ['*', 'technologies.*', 'directions_technologies.*', 'gallery.*']
-    }));
+    })).catch(() => notFound());
 }
 
 async function getTechnologies(ids) {
@@ -31,7 +32,7 @@ async function getTechnologies(ids) {
                 }
         },
         fields: ['*', 'gallery.*']
-    }));
+    })).catch(() => notFound());
 }
 
 async function getInformationMenu() {
