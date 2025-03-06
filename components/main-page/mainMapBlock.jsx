@@ -13,7 +13,7 @@ const MainMapBlock = ({mapBlockText, mapBlockLink}) => {
                 xl:h-[860px]
                 ">
                 <div className="absolute left-0 top-0 w-full h-full upper-gradient"></div>
-                <div className="z-10 flex flex-col items-center max-w-[700px]">
+                <div className="z-[5] flex flex-col items-center max-w-[700px]">
                     <Image quality={100} className="lg:w-[320px] lg:h-[65px]" width={246} height={50}
                            src="/logo-blue.svg"
                            alt="Общероссийская общественная организация Парки России"></Image>

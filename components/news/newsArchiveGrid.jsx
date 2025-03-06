@@ -35,7 +35,7 @@ const NewsArchiveGrid = ({page, limit, news, totalCount}) => {
                     <Link href={'/news/' + item.slug} key={item.title + item.id} className="news-item">
                         <Image width={480} height={0}
                                quality={100}
-                               className="duration-300 news-item-image object-fit w-full aspect-[1.65] rounded-3xl"
+                               className="duration-300 news-item-image object-cover w-full aspect-[1.65] rounded-3xl"
                                src={getImageURL(item.thumbnail)} alt={item.title}></Image>
                         <p className="font-inter text-secondary-black mt-4
                                 text-[16px] leading-6

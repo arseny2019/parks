@@ -37,7 +37,7 @@ const TechnologyModal = ({technology}) => {
                     lg:text-[36px] lg:leading-[43px]
                     xl:text-[40px] xl:leading-[48px]
                 ">{technology.title}</h3>
-                    {technology.content && <div className="mt-10 text-[18px] leading-[27px]"
+                    {technology.content && <div className="mt-10 text-[18px] leading-[27px] news-content"
                                                 dangerouslySetInnerHTML={{__html: technology.content}}></div>}
                     {technology.features && technology.features.length > 0 &&
                         <div className="grid mt-10 grid-cols-1 gap-y-6">
@@ -70,7 +70,7 @@ const TechnologyModal = ({technology}) => {
                             height={0}
                             alt={technology.title}
                             src={getImageURL(image.directus_files_id)}
-                            className="w-full aspect-[2.25] object-cover rounded-3xl"
+                            className="w-full object-cover rounded-[1rem]"
                         ></Image></div>)}</div>}
                 </div>
             </div>
