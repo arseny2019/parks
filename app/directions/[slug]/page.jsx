@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import TechnologyGrid from "@/components/directions/technologyGrid";
 import Link from "next/link";
 import {notFound} from "next/navigation";
+import DirectionTopBlock from "@/components/directions/directionTopBlock";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -69,22 +70,7 @@ export default async function DirectionDetailPage({params}) {
     return (
         <>
             <Header contacts={contacts} directions={directions} withAnimation={true} menu={menu}></Header>
-            <div className="relative h-[600px] xl:h-[750px]">
-                <div className="h-full w-full absolute left-0 top-0 z-[1] dark-gradient">
-                    <div className="h-full c-container flex flex-col justify-end">
-                        <h1 className="font-roboto-condensed text-white font-[600] uppercase
-                            text-[36px] leading-[40px] pr-[56px] pb-[64px]
-                            md:pr-10 md:text-[50px] md:leading-[55px]
-                            lg:pr-[110px] lg:pb-[80px] lg:text-[60px] lg:leading-[66px]
-                            xl:text-[70px] xl:leading-[77px]
-                            2xl:pr-0 2xl:pb-[90px] 2xl:text-[80px] 2xl:leading-[88px]
-                        ">{detail.title}</h1>
-                    </div>
-                </div>
-                <Image quality={100} width={1320} height={0} className="w-full h-full object-cover"
-                       src={getImageURL(detail.image)}
-                       alt={detail.title}></Image>
-            </div>
+            <DirectionTopBlock detail={detail}/>
             <div id="offsetBlock"></div>
             <div className="c-container
                 mt-[100px] pb-[100px]
