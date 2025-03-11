@@ -24,7 +24,7 @@
         top: 10px;
     }
 
-    .custom-list-item::before {
+    .custom-list-item.custom-list-item_modal::before {
         width: 10px;
         height: 10px;
         top: 8px;

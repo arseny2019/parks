@@ -9,9 +9,9 @@ const Navigation = ({directions, active, closeCallback, contacts, menu}) => {
 
     useEffect(() => {
         if (active) {
-            setMenuClass('duration-500 delay-500 absolute top-0 left-0 z-[11] h-screen w-full bg-main-black overflow-y-auto');
+            setMenuClass('duration-500 delay-500 fixed top-0 left-0 z-[11] h-screen w-full bg-main-black overflow-y-auto');
         } else {
-            setMenuClass('invisible duration-500 opacity-0 absolute top-0 left-0 z-[11] h-screen w-full bg-main-black overflow-y-auto');
+            setMenuClass('invisible duration-500 opacity-0 fixed top-0 left-0 z-[11] h-screen w-full bg-main-black overflow-y-auto');
         }
     }, [active]);
 
@@ -19,7 +19,7 @@ const Navigation = ({directions, active, closeCallback, contacts, menu}) => {
         <div className={menuClass}>
             <div className="w-full">
                 <div className="mx-auto flex justify-between items-center duration-200
-                    2xl:max-w-[1680px] 2xl:pl-[120px] 2xl:pr-[120px]
+                    2xl:max-w-[1680px] 3xl:pl-[120px] 3xl:pr-[120px]
                     lg:pr-10 lg:pl-10
                     md:pr-6
                     pl-6 pt-8 pr-4
@@ -97,6 +97,7 @@ const Navigation = ({directions, active, closeCallback, contacts, menu}) => {
                             text-placeholder-white uppercase">Направления</p>
                         <div className="mt-6 flex flex-col gap-y-8 items-start pr-10">
                             {directions.map((direction, index) => (<Link
+                                onClick={closeCallback}
                                 className="
                                 text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase
                                 md:text-[22px] md:leading-[33px]
@@ -114,6 +115,7 @@ const Navigation = ({directions, active, closeCallback, contacts, menu}) => {
                             text-placeholder-white uppercase">Информация</p>
                         <div className="mt-6 flex flex-col gap-y-5 items-start">
                             {menu?.elements.map((elem) => <Link
+                                onClick={closeCallback}
                                 key={elem.label + elem.link + 'footer'}
                                 className="
                             text-[20px] leading-[30px] font-[400] font-roboto-condensed uppercase

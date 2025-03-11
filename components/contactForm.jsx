@@ -85,7 +85,7 @@ export default function ContactForm() {
                 ">Попробовать еще раз
                 </button>
             </div>}
-            <div className="grid grid-cols-1
+            {(!showSuccessWindow && !showErrorWindow) && <><div className="grid grid-cols-1
                             gap-y-4
                             md:gap-y-6">
                 <input
@@ -93,7 +93,7 @@ export default function ContactForm() {
                         required: true,
                         onChange: (e) => {
                             const normalizedValue = normalizePhoneNumber(e.target.value);
-                            setValue('phone', normalizedValue); // Update the form value
+                            setValue('phone', normalizedValue);
                         },
                         pattern: {
                             value: phonePattern,
@@ -101,7 +101,9 @@ export default function ContactForm() {
                         },
                     })
                     }
-                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
+                    className="block p-5 bg-input-bg focus:bg-input-bg-focus rounded-[16px] placeholder:text-placeholder-black leading-[150%] text-main-black
+                    text-[16px] focus:border focus:border-input-bg-focus-border focus:p-[19px]
+                    xl:text-[18px]"
                     placeholder="Телефон*" type="text" name="phone"/>
                 <input
                     {...register('email', {
@@ -111,16 +113,23 @@ export default function ContactForm() {
                             message: 'Invalid email address',
                         },
                     })}
-                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
+                    className="block p-5 bg-input-bg focus:bg-input-bg-focus rounded-[16px] placeholder:text-placeholder-black leading-[150%] text-main-black
+                    text-[16px] focus:border focus:border-input-bg-focus-border focus:p-[19px]
+                    xl:text-[18px]"
                     placeholder="Email*" type="text" name="email"/>
                 <input
                     {...register('name')}
-                    className="block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] text-main-black xl:text-[18px]"
+                    className="block p-5 bg-input-bg focus:bg-input-bg-focus rounded-[16px] placeholder:text-placeholder-black leading-[150%] text-main-black
+                    text-[16px] focus:border focus:border-input-bg-focus-border focus:p-[19px]
+                    xl:text-[18px]"
                     placeholder="Ваше имя" type="text" name="name"/>
                 <textarea
                     {...register('question')}
                     maxLength={512}
-                    className="resize-none h-[120px] block p-5 bg-[rgba(10,_10,_10,_0.04)] rounded-[16px] placeholder:text-placeholder-black text-[16px] leading-[150%] xl:text-[18px] text-main-black"
+                    className="resize-none h-[120px]
+                    block p-5 bg-input-bg focus:bg-input-bg-focus rounded-[16px] placeholder:text-placeholder-black leading-[150%] text-main-black
+                    text-[16px] focus:border focus:border-input-bg-focus-border focus:p-[19px]
+                    xl:text-[18px]"
                     placeholder="Расскажите о вашем запросе" name="question" rows="4"></textarea>
             </div>
 
@@ -132,7 +141,7 @@ export default function ContactForm() {
                 </button>
                 <p className="mt-4 text-[12px] leading-[125%] text-placeholder-black">Нажимая кнопку «Отправить», вы
                     даете согласие на <span className="text-secondary-black">обработку персональных данных</span></p>
-            </div>
+            </div></>}
         </form>
     )
 }

@@ -85,6 +85,7 @@ export default async function DirectionDetailPage({params}) {
                        src={getImageURL(detail.image)}
                        alt={detail.title}></Image>
             </div>
+            <div id="offsetBlock"></div>
             <div className="c-container
                 mt-[100px] pb-[100px]
                 md:mt-[120px] md:pb-[120px]

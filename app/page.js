@@ -65,6 +65,7 @@ export default async function Home() {
                 ></MainTopBlock>
             </div>
             <div className="xl:min-h-[900px] md:h-[100vh]"></div>
+            <div id="offsetBlock"></div>
             <div className="bg-white pb-[100px] md:pb-[120px] xl:pb-[200px]">
                 <MainDirectionsBlock
                     directionsBlockText={data.directionsBlockText}
