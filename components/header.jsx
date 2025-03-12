@@ -10,6 +10,7 @@ const Header = ({withAnimation, directions, contacts, menu}) => {
     const headerRef = useRef(null);
     const secondHeader = useRef(null);
     const blackCircleRef = useRef(null);
+    const blackCircleRef2 = useRef(null);
     const headerInnerRef = useRef(null);
     const [headerHeight, setHeaderHeight] = useState(0);
     const [heightOnAnimate, setHeightOnAnimate] = useState(0);
@@ -79,6 +80,16 @@ const Header = ({withAnimation, directions, contacts, menu}) => {
     }, [burgerActive, blackCircleRef]);
 
     useEffect(() => {
+        if (burgerActive && blackCircleRef2) {
+            setActiveMenu(true);
+            blackCircleRef2.current.classList.remove('scale-0', 'delay-300');
+        } else if (!burgerActive && blackCircleRef2) {
+            setActiveMenu(false);
+            blackCircleRef2.current.classList.add('scale-0', 'delay-300');
+        }
+    }, [burgerActive, blackCircleRef2]);
+
+    useEffect(() => {
 
         function calculateScrollbarWidth() {
             const scrollDiv = document.createElement('div');
@@ -134,7 +145,7 @@ const Header = ({withAnimation, directions, contacts, menu}) => {
             </header>
             <header ref={secondHeader}
                     className="backdrop-blur-[50px] bg-[rgba(255,_255,_255,_0.6)] duration-300 w-full fixed top-0 left-0 z-10 h-[88px] xl:h-[90px]">
-                <div ref={blackCircleRef} className="absolute right-0 top-0 scale-0 z-10 origin-center
+                <div ref={blackCircleRef2} className="absolute right-0 top-0 scale-0 z-10 origin-center
                 translate-x-[50%] translate-y-[-50%] duration-500 bg-main-black w-[max(400vh,_400vw)] h-[max(400vh,_400vw)] rounded-[50%]"></div>
                 <div className="absolute left-0 top-0 w-full">
                     <div ref={headerInnerRef} className="mx-auto flex justify-between items-center duration-200
