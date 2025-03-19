@@ -2,6 +2,7 @@
 import TechnologyModal from "@/components/technologyModal";
 import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
+import Link from "next/link";
 
 const TechnologyGrid = ({ technologies, technologies_title }) => {
 
@@ -16,8 +17,9 @@ const TechnologyGrid = ({ technologies, technologies_title }) => {
                         gap-y-6
                         lg:gap-y-8
                         ">
-                    {technologies.map(item => <div key={item.title + item.image} >
-                        <TechnologyModal technology={item}></TechnologyModal>
+                    {technologies.map(item => <div key={item.title + item.image}>
+                        {!item.link && <>
+                            <TechnologyModal technology={item}></TechnologyModal>
                         <button onClick={(e) => {
                         const modal = e.target.parentNode.parentNode.querySelector('.modal-container');
                         const overlay = e.target.parentNode.parentNode.querySelector('.modal-overlay');
@@ -34,7 +36,21 @@ const TechnologyGrid = ({ technologies, technologies_title }) => {
                         <Image quality={100} width={1360} height={0} src={getImageURL(item.image)}
                                className="absolute left-0 top-0 rounded-3xl h-full w-full object-cover"
                                alt={item.title}/>
-                    </button></div>)}
+                    </button>
+                        </>}
+                        {item.link && <>
+                        <Link target="_blank" href={item.link} className="w-full block project-card h-[250px] relative">
+
+                        <div className="absolute left-0 top-0 h-full w-full z-[1] projects-gradient rounded-3xl"></div>
+                        <p className="text-left uppercase absolute left-0 top-0 w-full h-full z-[2] px-6 py-8 text-white text-[28px] leading-[34px] font-roboto-condensed font-bold
+                                lg:text-[36px] lg:leading-[43px]
+                                xl:pt-12 xl:pl-10 xl:pr-[54px] xl:text-[40px] xl:leading-[48px]">{item.title}</p>
+                        <Image quality={100} width={1360} height={0} src={getImageURL(item.image)}
+                               className="absolute left-0 top-0 rounded-3xl h-full w-full object-cover"
+                               alt={item.title}/>
+                    </Link>
+                        </>}
+                    </div>)}
                 </div>
             </div>
         </>
