@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import Link from "next/link";
 import {notFound} from "next/navigation";
 import ProjectTopBlock from "@/components/projects/projectTopBlock";
+import TechnologyGrid from "@/components/directions/technologyGrid";
 
 async function getDirections() {
     return directus.request(readItems('directions'));
@@ -15,7 +16,7 @@ async function getDirections() {
 async function getProjectDetail(slug) {
     return directus.request(readItems('projects', {
         filter: {slug},
-        fields: ['*', 'gallery.*']
+        fields: ['*', 'gallery.*',  'technologies.*', 'projects_technologies.*']
     })).catch(() => notFound());
 }
 
@@ -42,6 +43,18 @@ export async function generateMetadata({params, searchParams}, parent) {
     }
 }
 
+async function getTechnologies(ids) {
+    return directus.request(readItems('technologies', {
+        filter: {
+            id:
+                {
+                    '_in': ids
+                }
+        },
+        fields: ['*', 'gallery.*']
+    })).catch(() => notFound());
+}
+
 export default async function ProjectDetailPage({params}) {
     const directions = await getDirections();
     const contacts = await getContacts();
@@ -51,6 +64,13 @@ export default async function ProjectDetailPage({params}) {
         notFound();
     }
     const menu = await getInformationMenu();
+
+    let technologies;
+    if (detail.technologies && detail.technologies.length > 0) {
+        technologies = await getTechnologies(detail.technologies.map(tech => tech.technologies_id));
+    }
+
+    console.log('technologies', technologies, detail);
 
     return (
         <>
@@ -116,6 +136,10 @@ export default async function ProjectDetailPage({params}) {
                                 width={900} height={0} src={getImageURL(item.directus_files_id)}
                                 alt="Изображение из галереи"/>)}
                         </div>}
+
+                    {technologies && technologies.length > 0 &&
+                        <TechnologyGrid technologies_title={detail.technologies_title}
+                                        technologies={technologies}></TechnologyGrid>}
 
                     <Link href="/contacts" className="block text-center w-full font-[500] bg-[rgba(10,_10,_10,_0.08)] duration-200 text-[rgba(10,_10,_10,_0.4)] hover:text-[rgba(10,_10,_10,_0.8)]
                        py-[30px] text-[20px] leading-[150%] rounded-[45px]
