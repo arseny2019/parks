@@ -14,6 +14,18 @@ const BlackHeader = ({directions, contacts, menu}) => {
     const [heightOnHide, setHeightOnHide] = useState(0);
     const [activeMenu, setActiveMenu] = useState(false);
 
+    if (typeof window !== 'undefined') {
+        useEffect(() => {
+            document.querySelectorAll('.logo-image').forEach(el => {
+                if (window.location.pathname === '/') {
+                    el.classList.remove('hover:opacity-70', 'duration-200');
+                } else {
+                    el.classList.add('hover:opacity-70', 'duration-200');
+                }
+            });
+        }, [window.location.pathname]);
+    }
+
     useEffect(() => {
         setHeaderHeight(headerRef.current.getBoundingClientRect().height);
 
@@ -92,7 +104,7 @@ const BlackHeader = ({directions, contacts, menu}) => {
                     ">
                         <Link href="/">
                             <Image width={142} height={46} src="/logo-black.svg"
-                                   className="h-[44px] w-[138px] md:h-[46px] md:w-[142px]" alt="Logo"></Image>
+                                   className="logo-image h-[44px] w-[138px] md:h-[46px] md:w-[142px]" alt="Logo"></Image>
                         </Link>
 
                         <div className="text-main-black">
