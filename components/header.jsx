@@ -17,6 +17,18 @@ const Header = ({withAnimation, directions, contacts, menu}) => {
     const [activeHeader, setActiveHeader] = useState(false);
     const [activeMenu, setActiveMenu] = useState(false);
 
+    if (typeof window !== 'undefined') {
+        useEffect(() => {
+            document.querySelectorAll('.logo-image').forEach(el => {
+                if (window.location.pathname === '/') {
+                    el.classList.remove('hover:opacity-70', 'duration-200');
+                } else {
+                    el.classList.add('hover:opacity-70', 'duration-200');
+                }
+            });
+        }, [window.location.pathname]);
+    }
+
     useEffect(() => {
         const blackWrapper = document.querySelector('#blackWrapper');
         setHeaderHeight(headerRef.current.getBoundingClientRect().height);
@@ -119,7 +131,7 @@ const Header = ({withAnimation, directions, contacts, menu}) => {
                     ">
                         <Link href="/">
                             <Image width={142} height={46} src={"/logo.svg"}
-                                   className="h-[44px] w-[138px] md:h-[46px] md:w-[142px]" alt="Logo"></Image>
+                                   className="logo-image h-[44px] w-[138px] md:h-[46px] md:w-[142px]" alt="Logo"></Image>
                         </Link>
 
                         <div onClick={() => setBurgerActive(!burgerActive)}
@@ -132,7 +144,7 @@ const Header = ({withAnimation, directions, contacts, menu}) => {
                 </div>
             </header>
             <header ref={secondHeader}
-                    className="backdrop-blur-[50px] bg-[rgba(255,_255,_255,_0.6)] duration-300 w-full fixed top-0 left-0 z-10 h-[88px] xl:h-[90px]">
+                    className="opacity-0 invisible backdrop-blur-[50px] bg-[rgba(255,_255,_255,_0.6)] duration-300 w-full fixed top-0 left-0 z-10 h-[88px] xl:h-[90px]">
                 <div className="absolute left-0 top-0 w-full">
                     <div ref={headerInnerRef} className="mx-auto flex justify-between items-center duration-200
                     2xl:max-w-[1680px] 3xl:pl-[120px] 3xl:pr-[120px]
@@ -143,7 +155,7 @@ const Header = ({withAnimation, directions, contacts, menu}) => {
                         <Link href="/">
                             <Image width={142} height={46}
                                    src={"/logo-black.svg"}
-                                   className="h-[44px] w-[138px] md:h-[46px] md:w-[142px]" alt="Logo"></Image>
+                                   className="logo-image h-[44px] w-[138px] md:h-[46px] md:w-[142px]" alt="Logo"></Image>
                         </Link>
 
                         <div onClick={() => setBurgerActive(!burgerActive)}
