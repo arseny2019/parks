@@ -49,6 +49,11 @@
 .news-content ul {
     margin-top: 12px !important;
 }
-.news-content ul + * {
+
+.news-content ul + *:not(h2) {
     margin-top: 32px !important;
+}
+
+.news-content h2 {
+    margin-top: 24px !important;
 }
