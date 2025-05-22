@@ -71,11 +71,11 @@ const TechnologyModal = ({technology}) => {
                                 </div>
                             ))}
                         </div>}
-                    <video src={video} muted={true} width={1360} height={480}
+                    {video && <video src={video} muted={true} width={1360} height={480}
                            controls={true}
                            className="mt-6 w-full h-auto rounded-[1rem]"
                            autoPlay={false}>
-                    </video>
+                    </video>}
                     {technology.gallery && technology.gallery.length > 0 &&
                         <div className="mt-8 lg:mt-10 grid grid-cols-1 gap-y-6"
                         >{technology.gallery.map((image, index) => <div key={technology.title + index}><Image
