@@ -1,18 +1,27 @@
 'use client';
 import {getImageURL} from "@/helpers/directus";
 import Image from "next/image";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import Link from "next/link";
 
 const TechnologyModal = ({technology}) => {
     const overlay = useRef(null);
     const modalRef = useRef(null);
+    const [video, setVideo] = useState(null);
+
+    useEffect(() => {
+        if (technology.video) {
+            setVideo(getImageURL(technology.video));
+        }
+    }, [technology]);
 
     const closeModal = () => {
         overlay?.current.classList.add('opacity-0', 'invisible');
         modalRef?.current.classList.add('translate-x-[100%]');
         document.body.classList.remove('menu-open');
     }
+
+    console.log('technologyModal', technology);
 
     return (
         <>
@@ -62,6 +71,11 @@ const TechnologyModal = ({technology}) => {
                                 </div>
                             ))}
                         </div>}
+                    <video src={video} muted={true} width={1360} height={480}
+                           controls={true}
+                           className="mt-6 w-full h-auto rounded-[1rem]"
+                           autoPlay={false}>
+                    </video>
                     {technology.gallery && technology.gallery.length > 0 &&
                         <div className="mt-8 lg:mt-10 grid grid-cols-1 gap-y-6"
                         >{technology.gallery.map((image, index) => <div key={technology.title + index}><Image
