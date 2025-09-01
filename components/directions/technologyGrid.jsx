@@ -3,9 +3,10 @@ import TechnologyModal from "@/components/technologyModal";
 import Image from "next/image";
 import {getImageURL} from "@/helpers/directus";
 import Link from "next/link";
+import {useState} from "react";
 
 const TechnologyGrid = ({ technologies, technologies_title }) => {
-
+    const [activeModal, setActiveModal] = useState();
     return(
         <>
             <div>
@@ -19,14 +20,9 @@ const TechnologyGrid = ({ technologies, technologies_title }) => {
                         ">
                     {technologies.map(item => <div key={item.title + item.image}>
                         {!item.link && <>
-                            <TechnologyModal technology={item}></TechnologyModal>
+                            <TechnologyModal closeModalCallback={() => setActiveModal(undefined)} active={activeModal === item.id} technology={item}></TechnologyModal>
                         <button onClick={(e) => {
-                        const modal = e.target.parentNode.parentNode.querySelector('.modal-container');
-                        const overlay = e.target.parentNode.parentNode.querySelector('.modal-overlay');
-                        console.log('modal', modal);
-                        modal.classList.remove('translate-x-[100%]');
-                        overlay.classList.remove('invisible', 'opacity-0');
-                        document.body.classList.add('menu-open');
+                            setActiveModal(item.id);
                     }} className="w-full project-card h-[250px] relative">
 
                         <div className="absolute left-0 top-0 h-full w-full z-[1] projects-gradient rounded-3xl"></div>
