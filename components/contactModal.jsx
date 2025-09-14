@@ -52,7 +52,7 @@ const ContactModal = ({active, closeModalCallback, project_title}) => {
                     lg:text-[36px] lg:leading-[43px]
                     xl:text-[40px] xl:leading-[48px]
                 ">Напишите нам</h3>
-                    <div className="mt-10 h-full">
+                    <div className="mt-10 h-[calc(100%_-_48px)]">
                         <ContactForm onClose={closeModal} project_title={project_title}/>
                     </div>
                 </div>
