@@ -5,7 +5,7 @@ import Link from "next/link";
 import TechnologyGrid from "@/components/directions/technologyGrid";
 import ContactModal from "@/components/contactModal";
 import {useContext} from "react";
-import { ModalContext } from "@/contexts/ModalProvider";
+import { ModalContext } from "@/components/contexts/ModalProvider";
 
 export default function ProjectDetailContent({detail, technologies}) {
     const {isOpen, openModal, closeModal} = useContext(ModalContext);
